@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VSim"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1800" Width="3600">
     <Grid>
+        <Image>
+            <Image.Source>
+                <BitmapImage UriSource="/Data+Images/WorldMap.png"/>
+            </Image.Source></Image>
         
     </Grid>
 </Window>
