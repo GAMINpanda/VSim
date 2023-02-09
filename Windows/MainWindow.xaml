@@ -7,10 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1800" Width="3600">
     <Grid>
+        <Data
         <Image>
             <Image.Source>
                 <BitmapImage UriSource="/Data+Images/WorldMap.png"/>
-            </Image.Source></Image>
-        
+            </Image.Source>
+        </Image>
     </Grid>
 </Window>
