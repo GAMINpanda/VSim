@@ -24,5 +24,10 @@ namespace VSim
         {
             InitializeComponent();
         }
+
+        private void OnSettingsClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
