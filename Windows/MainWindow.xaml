@@ -13,6 +13,9 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -20,15 +23,21 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Image Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="4">
+        <Image Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="0" Grid.RowSpan="6">
             <Image.Source>
                 <BitmapImage UriSource="/Data+Images/WorldMap.png"/>
             </Image.Source>
         </Image>
 
-        <Button x:Name="settings" Click="OnSettingsClick" Content="Settings" Grid.Row="3" Grid.Column="3" Height="100" Width="200"/>
+        <Button x:Name="settings" Click="OnSettingsClick" Content="Settings" Grid.Row="5" Grid.Column="6" Height="50" Width="100"/>
+        <Button x:Name="play" Click="OnPlayClick" Content="Play" Grid.Row="5" Grid.Column="5" Height="50" Width="100"/>
+        <Button x:Name="speed" Click="OnSpeedClick" Content="SpeedUp" Grid.Row="5" Grid.Column="2" Height="50" Width="100"/>
+        <Button x:Name="pause" Click="OnPauseClick" Content="Pause" Grid.Row="5" Grid.Column="4" Height="50" Width="100"/>
+        <Button x:Name="stop" Click="OnStopClick" Content="Stop" Grid.Row="5" Grid.Column="3" Height="50" Width="100"/>
     </Grid>
 </Window>
 

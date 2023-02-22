@@ -27,7 +27,25 @@ namespace VSim
 
         private void OnSettingsClick(object sender, RoutedEventArgs e)
         {
-
+            SettingsWindow settings = new SettingsWindow(); //Opens the settings window
+            settings.Show();
+        }
+        private void OnPlayClick(object sender, RoutedEventArgs e)
+        {
+            //Will begin simulation
+        }
+        private void OnSpeedClick(object sender, RoutedEventArgs e)
+        {
+            //Will speed up the simulation
+        }
+        private void OnPauseClick(object sender, RoutedEventArgs e)
+        {
+            //Will pause the simulation
+        }
+        private void OnStopClick(object sender, RoutedEventArgs e)
+        {
+            //Will stop the simulation (and closes window)
+            this.Close();
         }
     }
 }

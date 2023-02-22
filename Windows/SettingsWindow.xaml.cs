@@ -23,5 +23,30 @@ namespace VSim
         {
             InitializeComponent();
         }
+
+        private void OnSaveClick(object sender, RoutedEventArgs e)
+        {
+            //Will save current virus situation
+        }
+
+        private void OnLoadClick(object sender, RoutedEventArgs e)
+        {
+            //Will load a new simulation
+        }
+
+        private void OnResetClick(object sender, RoutedEventArgs e)
+        {
+            //Will reset the simulation
+        }
+
+        private void OnSaveVirusClick(object sender, RoutedEventArgs e)
+        {
+            //Will save the virus parameters
+        }
+
+        private void OnReturnClick(object sender, RoutedEventArgs e)
+        {
+            this.Hide(); //Closes settings window
+        }
     }
 }
