@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using Main;
 
 namespace VSim
 {
@@ -27,25 +29,28 @@ namespace VSim
 
         private void OnSettingsClick(object sender, RoutedEventArgs e)
         {
+            Main.Main.Globals.CheckPause = true;
             SettingsWindow settings = new SettingsWindow(); //Opens the settings window
             settings.Show();
         }
         private void OnPlayClick(object sender, RoutedEventArgs e)
         {
-            //Will begin simulation
+            Main.Main.Globals.Speed = 1; //sets default running speed
+            Main.Main.Globals.CheckPause = false; //sets the pause watching variable to false ==> Program can now start
         }
         private void OnSpeedClick(object sender, RoutedEventArgs e)
         {
-            //Will speed up the simulation
+            Main.Main.Globals.Speed = 0.5; //Running time halfs so simulation runs double as quick
         }
         private void OnPauseClick(object sender, RoutedEventArgs e)
         {
-            //Will pause the simulation
+            Main.Main.Globals.CheckPause = true; //sets pause watching variable to true ==> Program is paused
         }
         private void OnStopClick(object sender, RoutedEventArgs e)
         {
             //Will stop the simulation (and closes window)
             this.Close();
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
