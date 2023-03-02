@@ -8,24 +8,24 @@ namespace Main
         {
             //will be the main running function of the program
 
-            //Startup()
+            //Startup() //will handle user selection on starting pixel once writted
 
             while (true)
             {
-                //Cycle(Globals.Day)
+                //Cycle(Globals.Day) //once cycle has been written this will be called to carry out the simulation
 
-                Globals.Day++;
+                Globals.Day++; //day increased each cycle
 
-                //Sleep(Globals.Speed)
+                System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
 
-                while (Globals.CheckPause)
+                while (Globals.CheckPause) //infinte loop if paused
                 {
-                    if (Globals.CheckStop) { break; }
+                    if (Globals.CheckStop) { break; } //Ends the simulation
                 }
 
             }
         }
-        public static class Globals {
+        public static class Globals { //Defining all global variables to be used below
 
             public static int Day = 0;
 
