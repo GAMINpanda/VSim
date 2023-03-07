@@ -1,4 +1,5 @@
 ﻿using System;
+using VSim;
 
 namespace Main
 {
@@ -8,11 +9,11 @@ namespace Main
         {
             //will be the main running function of the program
 
-            //Startup() //will handle user selection on starting pixel once writted
+            Startup(); //will handle user selection on starting pixel and draw main window
 
             while (true)
             {
-                //Cycle(Globals.Day) //once cycle has been written this will be called to carry out the simulation
+                //Cycle(Globals.Day); //once cycle has been written this will be called to carry out the simulation
 
                 Globals.Day++; //day increased each cycle
 
@@ -24,6 +25,19 @@ namespace Main
                 }
 
             }
+        }
+
+        public void Startup()
+        {
+            //Begins program
+
+            //ReadMapData(1280, 720); //Will read mapdata from the data maps once written
+
+            //StartSelectScreen(); //Once written will select pixel to start from
+
+            VSim.MainWindow main = new MainWindow();
+            main.Show();
+
         }
         public static class Globals { //Defining all global variables to be used below
 
