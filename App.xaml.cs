@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Main;
 
 namespace VSim
 {
@@ -13,5 +14,10 @@ namespace VSim
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            Main.Main program = new Main.Main();
+            program.MainProcedure();
+        }
     }
 }

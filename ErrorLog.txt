@@ -1,0 +1,14 @@
+﻿Created 08/03/2023
+Alexander Mitchiner
+
+Entry 1: Startup ==> Trying to launch from MainLogic.cs
+Error: cannot locate resource MainLogic.cs
+Solution: set startup to MainWindow.xaml and launch MainLogic from there
+
+Entry 2: Startup ==> Trying to show MainWindow
+Error: logic error --> window not showing
+Solution: Launch MainLogic from App.xaml.cs
+
+Entry 3: Startup ==> Trying to show MainWindow
+Error: Stack Overflow, repeated recursive calling
+Solution: Launch MainLogic from App.xaml.cs

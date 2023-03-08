@@ -35,9 +35,6 @@ namespace Main
 
             //StartSelectScreen(); //Once written will select pixel to start from
 
-            VSim.MainWindow main = new MainWindow();
-            main.Show();
-
         }
         public static class Globals { //Defining all global variables to be used below
 
