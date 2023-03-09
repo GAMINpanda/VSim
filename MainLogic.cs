@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using VSim;
 
 namespace Main
@@ -16,11 +17,18 @@ namespace Main
                 //Cycle(Globals.Day); //once cycle has been written this will be called to carry out the simulation
 
                 Globals.Day++; //day increased each cycle
+                Trace.WriteLine("New day");
 
-                System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
+                //System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
+
+                int count = 0;
 
                 while (Globals.CheckPause) //infinte loop if paused
                 {
+                    if (count == 0) { //debugging tool to check if paused
+                        Trace.WriteLine("Is Paused");
+                        count++;
+                    }
                     if (Globals.CheckStop) { break; } //Ends the simulation
                 }
 
@@ -31,7 +39,9 @@ namespace Main
         {
             //Begins program
 
-            //ReadMapData(1280, 720); //Will read mapdata from the data maps once written
+            Trace.WriteLine("Startup loaded");
+
+            //ReadMapData(1280, 640); //Will read mapdata from the data maps once written
 
             //StartSelectScreen(); //Once written will select pixel to start from
 
