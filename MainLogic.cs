@@ -19,7 +19,7 @@ namespace Main
                 Globals.Day++; //day increased each cycle
                 Trace.WriteLine("New day");
 
-                //System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
+                System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
 
                 int count = 0;
 

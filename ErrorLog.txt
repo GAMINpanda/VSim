@@ -15,4 +15,4 @@ Solution: Launch MainLogic from App.xaml.cs
 
 Entry 4: Startup ==> Trying to use MainWindow
 Error: Cannot interact with program ==> MainProcedure invoking on UI thread, blocking it
-Solution:
+Solution: Launch the MainProcedure from a seperate thread

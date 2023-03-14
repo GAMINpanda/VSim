@@ -46,7 +46,7 @@ namespace VSim
 
         private void OnReturnClick(object sender, RoutedEventArgs e)
         {
-            this.Hide(); //Closes settings window
+            this.Close(); //Closes settings window
         }
     }
 }

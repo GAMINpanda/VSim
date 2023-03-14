@@ -18,13 +18,16 @@ namespace VSim
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 
-            MainWindow main = new MainWindow();
+            MainWindow main = new MainWindow(); //Launch MainWindow on startup
             main.Show();
 
             Trace.WriteLine("App Launched");
 
             Main.Main program = new Main.Main();
-            program.MainProcedure();
+            Task.Factory.StartNew(() =>
+            {
+                program.MainProcedure();
+            }); //Launches the MainProcedure from a seperate thread,allowing the UI thread to function normally
         }
     }
 }
