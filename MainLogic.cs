@@ -46,6 +46,19 @@ namespace Main
             //StartSelectScreen(); //Once written will select pixel to start from
 
         }
+
+        public void Cycle(int Day)
+        {
+            if (Globals.Cure < 1) //virus can only spread whilst the cure is incomplete
+            {;
+                //CheckSusceptiblePixels();
+                //CalcNewInfectedPixels();
+            }
+
+            //CalcRecoveredPixels();
+            //int TotalAble = CalcNewSIR();
+        }
+
         public static class Globals { //Defining all global variables to be used below
 
             public static int Day = 0;
