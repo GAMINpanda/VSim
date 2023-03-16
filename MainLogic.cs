@@ -14,10 +14,10 @@ namespace Main
 
             while (true)
             {
-                //Cycle(Globals.Day); //once cycle has been written this will be called to carry out the simulation
+                Cycle(Globals.Day); //this will be called to carry out a single cycle of the simulation
 
                 Globals.Day++; //day increased each cycle
-                Trace.WriteLine("New day");
+                Trace.WriteLine("New day: "+ Globals.Day);
 
                 System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
 
@@ -31,6 +31,7 @@ namespace Main
                     }
                     if (Globals.CheckStop) { break; } //Ends the simulation
                 }
+                if (count > 0) { Trace.WriteLine("Unpaused"); } //for debugging
 
             }
         }
@@ -41,7 +42,7 @@ namespace Main
 
             Trace.WriteLine("Startup loaded");
 
-            //ReadMapData(1280, 640); //Will read mapdata from the data maps once written
+            //ReadMapData(1280, 640); //Will read mapdata from the data maps once written (might decrease resolution later)
 
             //StartSelectScreen(); //Once written will select pixel to start from
 
@@ -49,14 +50,22 @@ namespace Main
 
         public void Cycle(int Day)
         {
+            Trace.WriteLine("Cycle called: "+Day);
+
             if (Globals.Cure < 1) //virus can only spread whilst the cure is incomplete
             {;
-                //CheckSusceptiblePixels();
-                //CalcNewInfectedPixels();
+                //CheckSusceptiblePixels(); //Gather Pixels that are susceptible to infection
+                //CalcNewInfectedPixels(); //Dictate whether to infect or not
             }
 
-            //CalcRecoveredPixels();
-            //int TotalAble = CalcNewSIR();
+            //CalcRecoveredPixels(); //Recovers regardless of the cure being created or not
+
+            //int TotalAble = CalcNewSIR(); 
+            //UpdateCure(TotalAble, 8000000000); //assume only those who are uninfected can work towards cure
+            //VirusMutate()
+
+            //UpdatePixelColour(); //Makes changes to MainWindow image
+            //UpdateGraphData(Day, READ('SIRValues.csv')); //Update Graph ==> May slash depending on time
         }
 
         public static class Globals { //Defining all global variables to be used below

@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Content Include="ErrorLog.txt" />
     <Compile Include="MainLogic.cs" />
+    <Compile Include="TestData.cs" />
     <Compile Include="VirusClass.cs" />
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
