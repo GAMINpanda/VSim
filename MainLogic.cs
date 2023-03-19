@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using VSim;
+using Testing;
 
 namespace Main
 {
@@ -11,6 +12,10 @@ namespace Main
             //will be the main running function of the program
 
             Startup(); //will handle user selection on starting pixel and draw main window
+
+            /* Area for testing each milestone
+            Test.TestDataMilestone1();
+            */
 
             while (true)
             {
