@@ -30,7 +30,7 @@ namespace VSim
         private void OnSettingsClick(object sender, RoutedEventArgs e)
         {
             Main.Main.Globals.CheckPause = true;
-            SettingsWindow settings = new SettingsWindow(); //Opens the settings window
+            SettingsWindow settings = new SettingsWindow(); //initialise settings window
             settings.Show();
         }
         private void OnPlayClick(object sender, RoutedEventArgs e)
@@ -51,6 +51,12 @@ namespace VSim
             //Will stop the simulation (and closes window)
             this.Close();
             System.Windows.Forms.Application.Exit();
+        }
+        private void OnGraphClick(object sender, RoutedEventArgs e)
+        {
+            //Opens graph with SIR values
+            ChartStats chart = new ChartStats();
+            chart.Show();
         }
     }
 }

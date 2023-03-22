@@ -3,11 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:VSim"
         mc:Ignorable="d"
         Title="ChartStats" Height="450" Width="800">
 
-    <dvc:Chart Name="SIR" Height="400" Width="400">
-    </dvc:Chart>
+    <Grid Name="grid1">
+        <lvc:CartesianChart x:Name="ChartMain" Series="{Binding SeriesCollection}"/>
+
+        <Button x:Name="BackToMain" Click="OnBackToMainClick" Content="Return To Main"></Button>
+    </Grid>
 </Window>
