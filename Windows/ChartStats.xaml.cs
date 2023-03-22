@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Forms;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 
 namespace VSim
@@ -22,36 +15,117 @@ namespace VSim
     /// </summary>
     public partial class ChartStats : Window
     {
+        private Func<double, string> _yFormatter;
+
         public ChartStats()
         {
             InitializeComponent();
-            BuildChart();
-        }
 
-        public void BuildChart()
-        {
-            ChartMain.AxisX.Add(new LiveCharts.Wpf.Axis {
-                Title = "Day",
-            });
+            //code adapted from LiveCharts tutorial at https://v0.lvcharts.com/App/examples/v1/Wpf/Stacked%20Area
 
-            ChartMain.AxisY.Add(new Axis
+            SeriesCollection = new SeriesCollection //Mock data for now, will add real data later on
             {
-                Title = "Population"
-            });
-
-            LineSeries Infected = new LineSeries { 
-                    Title="Infected",
-                    Values = new ChartValues<double> { 0, 2, 3, 5 }
+                new StackedAreaSeries //each 'StackedAreaSeries' defines a seperate line
+                {
+                    Title = "Susceptible",
+                    Values = new ChartValues<DateTimePoint>
+                    {
+                        new DateTimePoint(new DateTime(1, 1, 1), .228),
+                        new DateTimePoint(new DateTime(2, 1, 1), .285),
+                        new DateTimePoint(new DateTime(3, 1, 1), .366),
+                        new DateTimePoint(new DateTime(4, 1, 1), .478)
+                    },
+                    LineSmoothness = 0
+                },
+                new StackedAreaSeries
+                {
+                    Title = "Infected",
+                    Values = new ChartValues<DateTimePoint>
+                    {
+                        new DateTimePoint(new DateTime(1, 1, 1), .339),
+                        new DateTimePoint(new DateTime(2, 1, 1), .424),
+                        new DateTimePoint(new DateTime(3, 1, 1), .519),
+                        new DateTimePoint(new DateTime(4, 1, 1), .618)
+                    },
+                    LineSmoothness = 0
+                },
+                new StackedAreaSeries
+                {
+                    Title = "Recovered",
+                    Values = new ChartValues<DateTimePoint>
+                    {
+                        new DateTimePoint(new DateTime(1, 1, 1), 1.395),
+                        new DateTimePoint(new DateTime(2, 1, 1), 1.694),
+                        new DateTimePoint(new DateTime(3, 1, 1), 2.128),
+                        new DateTimePoint(new DateTime(4, 1, 1), 2.634)
+                    },
+                    LineSmoothness = 0
+                },
+                new StackedAreaSeries
+                {
+                    Title = "Dead",
+                    Values = new ChartValues<DateTimePoint>
+                    {
+                        new DateTimePoint(new DateTime(1, 1, 1), .549),
+                        new DateTimePoint(new DateTime(2, 1, 1), .605),
+                        new DateTimePoint(new DateTime(3, 1, 1), .657),
+                        new DateTimePoint(new DateTime(4, 1, 1), .694)
+                    },
+                    LineSmoothness = 0
+                }
             };
 
-            SeriesCollection SIR = new SeriesCollection { 
-                Infected
-            };
+            XFormatter = val => new DateTime((long)val).ToString("yyyy"); //Deals with labelling
+            YFormatter = val => val.ToString("N") + " M";
+
+            DataContext = this;
         }
 
-        private void OnBackToMainClick(object sender, RoutedEventArgs e)
+        public SeriesCollection SeriesCollection { get; set; }
+        public Func<double, string> XFormatter { get; set; }
+
+        public Func<double, string> YFormatter
+        {
+            get { return _yFormatter; }
+            set
+            {
+                _yFormatter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public StackMode StackMode { get; set; }
+
+        private void ChangeStackModeOnClick(object sender, RoutedEventArgs e) //Changes to a percentage type graph instead
+        {
+            foreach (var series in SeriesCollection.Cast<StackedAreaSeries>())
+            {
+                series.StackMode = series.StackMode == StackMode.Percentage
+                    ? StackMode.Values
+                    : StackMode.Percentage;
+            }
+
+            if (((StackedAreaSeries)SeriesCollection[0]).StackMode == StackMode.Values)
+            {
+                YFormatter = val => val.ToString("N") + " M";
+            }
+            else
+            {
+                YFormatter = val => val.ToString("P");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName = null)
+        {
+            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void OnBackToMainClick(object sender, RoutedEventArgs e) //return to the Main Window
         {
             this.Close();
         }
     }
+    
 }
