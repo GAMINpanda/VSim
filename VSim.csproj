@@ -38,6 +38,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,12 +59,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Content Include="ErrorLog.txt" />
+    <Compile Include="ChartStats.xaml.cs">
+      <DependentUpon>ChartStats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainLogic.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="VirusClass.cs" />
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="ChartStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
