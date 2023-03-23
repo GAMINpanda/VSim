@@ -51,6 +51,8 @@ namespace VSim
         private void OnStopClick(object sender, RoutedEventArgs e)
         {
             //Will stop the simulation (and closes window)
+            Main.Main.Globals.CheckPause = true;
+            Main.Main.Globals.CheckStop = true;
             chartWin.Close();
             settingsWin.Close();
             this.Close();

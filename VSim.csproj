@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Content Include="ErrorLog.txt" />
+    <Compile Include="FileInteraction.cs" />
     <Compile Include="Windows\ChartStats.xaml.cs">
       <DependentUpon>ChartStats.xaml</DependentUpon>
     </Compile>
@@ -119,6 +120,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Save.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
