@@ -26,7 +26,7 @@ namespace VSim
             Main.Main program = new Main.Main();
             Task.Factory.StartNew(() =>
             {
-                program.MainProcedure();
+                program.MainProcedure(main);
             }); //Launches the MainProcedure from a seperate thread,allowing the UI thread to function normally
         }
     }

@@ -124,7 +124,7 @@ namespace VSim
 
         private void OnBackToMainClick(object sender, RoutedEventArgs e) //return to the Main Window
         {
-            this.Close();
+            this.Hide();
         }
     }
     

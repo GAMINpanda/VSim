@@ -22,6 +22,8 @@ namespace VSim
     /// </summary>
     public partial class MainWindow : Window
     {
+        public SettingsWindow settingsWin = new SettingsWindow();
+        public ChartStats chartWin = new ChartStats();
         public MainWindow()
         {
             InitializeComponent();
@@ -29,9 +31,9 @@ namespace VSim
 
         private void OnSettingsClick(object sender, RoutedEventArgs e)
         {
-            Main.Main.Globals.CheckPause = true;
-            SettingsWindow settings = new SettingsWindow(); //initialise settings window
-            settings.Show();
+            Main.Main.Globals.CheckPause = true; //pause when opening settings
+            //initialise settings window
+            settingsWin.Show();
         }
         private void OnPlayClick(object sender, RoutedEventArgs e)
         {
@@ -49,14 +51,23 @@ namespace VSim
         private void OnStopClick(object sender, RoutedEventArgs e)
         {
             //Will stop the simulation (and closes window)
+            chartWin.Close();
+            settingsWin.Close();
             this.Close();
             System.Windows.Forms.Application.Exit();
         }
         private void OnGraphClick(object sender, RoutedEventArgs e)
         {
+            Main.Main.Globals.CheckPause = true; //pause when opening graph
             //Opens graph with SIR values
-            ChartStats chart = new ChartStats();
-            chart.Show();
+            chartWin.Show();
+        }
+
+        public void ChangeDay()
+        {
+            //Change the value of 'Day' on the main window
+            this.dayDisplay.Text = "Day: " + Main.Main.Globals.Day;
+            
         }
     }
 }

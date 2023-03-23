@@ -7,7 +7,7 @@ namespace Main
 {
     class Main
     {
-        public void MainProcedure()
+        public void MainProcedure(MainWindow MainWin)
         {
             //will be the main running function of the program
 
@@ -20,6 +20,8 @@ namespace Main
             while (true)
             {
                 Cycle(Globals.Day); //this will be called to carry out a single cycle of the simulation
+
+                MainWin.Dispatcher.Invoke(() => { MainWin.ChangeDay(); });
 
                 Globals.Day++; //day increased each cycle
                 Trace.WriteLine("New day: "+ Globals.Day);
