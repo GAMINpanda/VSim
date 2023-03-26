@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Diagnostics;
-using Main;
+using VSim;
 
 namespace VSim
 {
@@ -23,7 +23,7 @@ namespace VSim
 
             Trace.WriteLine("App Launched");
 
-            Main.Main program = new Main.Main();
+            Main program = new Main();
             Task.Factory.StartNew(() =>
             {
                 program.MainProcedure(main);

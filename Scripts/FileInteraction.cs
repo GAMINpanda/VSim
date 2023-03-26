@@ -1,25 +1,20 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using VSim.Code_Logic;
-using Main;
+using VSim;
 
 namespace VSim
 {
-    class CurrentPixelStatusAndVirus //decision to store SIR data in a class ==> rather than .txt files
+    public class CurrentPixelStatusAndVirus //decision to store SIR data in a class ==> rather than .txt files
     {
-        public List<int[]> SusceptiblePixels; //initialising attributes that other parts of the program can then use
-        public List<int[]> InfectedPixels;
-        public List<int[]> RecoveredPixels;
-        public List<int[]> DeadPixels;
+        public List<int[]> SusceptiblePixels { get; set; } //initialising attributes that other parts of the program can then use
+        public List<int[]> InfectedPixels { get; set; }
+        public List<int[]> RecoveredPixels { get; set; }
+        public List<int[]> DeadPixels { get; set; }
 
-        public List<int[]> SIRValues;
-        public VirusClass Virus;
+        public List<int[]> SIRValues { get; set; }
+        public VirusClass Virus { get; set; }
 
         public CurrentPixelStatusAndVirus(VirusClass VirusInp, List<int[]> InfectedInp, List<int[]> RecoveredInp, List<int[]> DeadInp, List<int[]> SIRInp)
         {
@@ -43,22 +38,33 @@ namespace VSim
             SIRValues = new List<int[]>();
         }
 
+        public CurrentPixelStatusAndVirus(VirusClass virusInp) //if only input is virus class
+        {
+            Virus = virusInp;
+            SusceptiblePixels = new List<int[]>();
+            InfectedPixels = new List<int[]>();
+            RecoveredPixels = new List<int[]>();
+            DeadPixels = new List<int[]>();
+            SIRValues = new List<int[]>();
+        }
+
         public void Reset() //reset simulation
         {
             SusceptiblePixels = new List<int[]>();
-            InfectedPixels = new List<int[]>() { Main.Main.Globals.Day1Infected};
+            InfectedPixels = new List<int[]>() { Main.Globals.Day1Infected};
             RecoveredPixels = new List<int[]>();
             DeadPixels = new List<int[]>();
             SIRValues = new List<int[]>() { new int[] {1,0,0,0} }; //only 1 infected individual (will modify to add susceptible once data map gathering is written)
         }
     }
 
-    class FileInteraction
+    public class FileInteraction
     {
+        public string FilePath = System.IO.Path.GetFullPath(@"..\..\Save.json");
+
         public CurrentPixelStatusAndVirus LoadSaveFile() //Loads from Save.json
         {
-            string FileName = "Save.json";
-            using (StreamReader sr = new StreamReader(FileName))
+            using (StreamReader sr = new StreamReader(FilePath))
             {
                 string SaveJSONasString = sr.ReadToEnd(); //Read as raw string
 
@@ -70,13 +76,14 @@ namespace VSim
 
         public void SaveToFile(CurrentPixelStatusAndVirus cpsv) //writes cpsv object to Save.json
         {
-            string FileName = "Save.json";
-            using (StreamWriter sw = new StreamWriter(FileName))
-            {
-                string ConvertToJSON = JsonSerializer.Serialize(cpsv); //serialize object to JSON format
+            Console.WriteLine(FilePath);
+            StreamWriter sw = new StreamWriter(FilePath);
 
-                sw.Write(FileName); //Write to save
-            }
+            string ConvertToJSON = JsonSerializer.Serialize(cpsv); //serialize object to JSON format
+
+            sw.Write(ConvertToJSON); //Write to save
+
+            sw.Close();
         }
     }
 }

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VSim.Code_Logic
+namespace VSim
 {
     public class VirusClass
     {
-        public string VirusName; //Defining attributes - public so can be accessed without getters and setters
-        public int Lethality;
-        public double RNumber;
-        public int Infectivity;
-        public double TemperatureResist;
-        public int MutateChance;
+        public string VirusName { get; set; } //Defining attributes - public so can be accessed without getters and setters
+        public int Lethality { get; set; }
+        public double RNumber { get; set; }
+        public int Infectivity { get; set; }
+        public double TemperatureResist { get; set; }
+        public int MutateChance { get; set; }
 
         public VirusClass()
         {

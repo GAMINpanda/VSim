@@ -3,7 +3,7 @@ using System.Diagnostics;
 using VSim;
 using Testing;
 
-namespace Main
+namespace VSim
 {
     class Main
     {
@@ -13,9 +13,11 @@ namespace Main
 
             Startup(); //will handle user selection on starting pixel and draw main window
 
+
             /* Area for testing each milestone
             Test.TestDataMilestone1();
             */
+            Test.TestDataMilestone3();
 
             while (true)
             {
@@ -88,6 +90,8 @@ namespace Main
             public static bool CheckStop = false;
 
             public static double Speed = 1;
+
+            public static CurrentPixelStatusAndVirus cpsv = new CurrentPixelStatusAndVirus(new VirusClass());
         }
     }
 }

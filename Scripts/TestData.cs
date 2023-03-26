@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Collections.Generic;
-using static Main.Main.Globals;
+using static VSim.Main.Globals;
 
 namespace Testing
 {
@@ -64,7 +64,7 @@ namespace Testing
             }
         }
 
-        public static void TestDataMilestone1()
+        public static void TestDataMilestone1() //testing milestone 1 data (global variables)
         {
             TestItemInt(new int[] { 0, 5}, Day, "Day");
 
@@ -77,6 +77,26 @@ namespace Testing
             TestItemBoolean(new bool[] { true, false}, CheckStop, "CheckStop");
 
             TestItemDouble(new double[] {0,1,0.5}, Speed, "Speed");
+        }
+
+        public static void TestDataMilestone3() //testing milestone 3 data to check saving works
+        {
+            cpsv.Virus.VirusName = "Covid";
+            cpsv.Virus.Lethality = 75;
+            cpsv.Virus.Infectivity = 90;
+            cpsv.Virus.RNumber = 15;
+            cpsv.Virus.TemperatureResist = 0.3;
+            cpsv.Virus.MutateChance = 50;
+
+            cpsv.InfectedPixels.Add(new int[] { 0, 0 });
+
+            cpsv.RecoveredPixels.Add(new int[] { 0, 1 });
+
+            cpsv.DeadPixels.Add(new int[] { 1, 0 } );
+
+            cpsv.SusceptiblePixels.Add( new int[] { 1, 1 } );
+
+            cpsv.SIRValues.Add(new int[] { 0, 0, 0, 1} );
         }
     }
 }

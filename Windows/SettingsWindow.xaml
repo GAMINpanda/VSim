@@ -8,13 +8,14 @@
         Title="SettingsWindow" Height="360" Width="720">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -28,30 +29,40 @@
 
         <Button x:Name="saveVirus" Click="OnSaveVirusClick" Content="Save Virus Changes" Grid.Row="0" Grid.Column="3" Height="50" Width="100"/>
         <Button x:Name="return" Click="OnReturnClick" Content="Return to Main" Grid.Row="1" Grid.Column="3" Height="50" Width="150"/>
+
         <DockPanel Grid.Row="0" Grid.Column="1" >
-            <TextBox Text="Lethality"></TextBox>
-            <TextBox Text="{Binding ElementName=lethality, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
-            <Slider x:Name="lethality" Width="120" Maximum="100" Minimum="1" />
+            <TextBox Text="Virus Name" IsReadOnly="True"></TextBox>
+            <TextBox x:Name="name" Text="Type Here"></TextBox>
         </DockPanel>
+
         <DockPanel Grid.Row="1" Grid.Column="1" >
-            <TextBox Text="RNumber"></TextBox>
-            <TextBox Text="{Binding ElementName=rnumber, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
-            <Slider x:Name="rnumber" Width="120" Maximum="20" Minimum="0.1" />
+            <TextBox Text="Lethality" IsReadOnly="True"></TextBox>
+            <Slider x:Name="lethality" Width="120" Maximum="100" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True"/>
         </DockPanel>
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding ElementName=lethality, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
+        
         <DockPanel Grid.Row="2" Grid.Column="1" >
-            <TextBox Text="Infectivity"></TextBox>
-            <TextBox Text="{Binding ElementName=infectivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
-            <Slider x:Name="infectivity" Width="120" Maximum="100" Minimum="1"/>
+            <TextBox Text="RNumber" IsReadOnly="True"></TextBox>
+            <Slider x:Name="rnumber" Width="120" Maximum="20" Minimum="0.1" TickFrequency="0.25" IsSnapToTickEnabled="True"/>
         </DockPanel>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding ElementName=rnumber, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
+        
         <DockPanel Grid.Row="3" Grid.Column="1" >
-            <TextBox Text="Temperature Resist"></TextBox>
-            <TextBox Text="{Binding ElementName=tempresist, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
-            <Slider x:Name="tempresist" Width="120" Maximum="1" Minimum="0.1"/>
+            <TextBox Text="Infectivity" IsReadOnly="True"></TextBox>
+            <Slider x:Name="infectivity" Width="120" Maximum="100" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True"/>
         </DockPanel>
+        <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding ElementName=infectivity, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
+        
         <DockPanel Grid.Row="4" Grid.Column="1" >
-            <TextBox Text="Mutate Chance"></TextBox>
-            <TextBox Text="{Binding ElementName=mutateChance, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
-            <Slider x:Name="mutateChance" Width="120" Maximum="100" Minimum="1"/>
+            <TextBox Text="Temperature Resist" IsReadOnly="True"></TextBox>
+            <Slider x:Name="tempresist" Width="120" Maximum="1" Minimum="0.1" TickFrequency="0.1" IsSnapToTickEnabled="True"/>
         </DockPanel>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding ElementName=tempresist, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
+        
+        <DockPanel Grid.Row="5" Grid.Column="1" >
+            <TextBox Text="Mutate Chance" IsReadOnly="True"></TextBox>
+            <Slider x:Name="mutateChance" Width="120" Maximum="100" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True"/>
+        </DockPanel>
+        <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding ElementName=mutateChance, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
     </Grid>
 </Window>

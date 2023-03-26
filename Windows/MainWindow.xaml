@@ -6,7 +6,7 @@
         xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:VSim"
         mc:Ignorable="d"
-        Title="MainWindow" Height="360" Width="720" AllowsTransparency="True">
+        Title="MainWindow" Height="360" Width="720">
 
     <Grid>
         <Grid.ColumnDefinitions>
