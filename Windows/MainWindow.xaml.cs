@@ -31,17 +31,20 @@ namespace VSim
         private void OnSettingsClick(object sender, RoutedEventArgs e)
         {
             Main.Globals.CheckPause = true; //pause when opening settings
+            Console.WriteLine("Opening Settings");
             //initialise settings window
             settingsWin.Show();
         }
         private void OnPlayClick(object sender, RoutedEventArgs e)
         {
             Main.Globals.Speed = 1; //sets default running speed
+            Console.WriteLine("Speed: "+Main.Globals.Speed);
             Main.Globals.CheckPause = false; //sets the pause watching variable to false ==> Program can now start
         }
         private void OnSpeedClick(object sender, RoutedEventArgs e)
         {
             Main.Globals.Speed = 0.5; //Running time halfs so simulation runs double as quick
+            Console.WriteLine("Speed: "+Main.Globals.Speed);
         }
         private void OnPauseClick(object sender, RoutedEventArgs e)
         {
@@ -50,6 +53,7 @@ namespace VSim
         private void OnStopClick(object sender, RoutedEventArgs e)
         {
             //Will stop the simulation (and closes window)
+            Console.WriteLine("Applicatin stopping");
             Main.Globals.CheckPause = true;
             Main.Globals.CheckStop = true;
             chartWin.Close();
@@ -60,6 +64,7 @@ namespace VSim
         private void OnGraphClick(object sender, RoutedEventArgs e)
         {
             Main.Globals.CheckPause = true; //pause when opening graph
+            Console.WriteLine("Opening Graph");
             //Opens graph with SIR values
             chartWin.Show();
         }

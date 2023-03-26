@@ -124,6 +124,7 @@ namespace VSim
 
         private void OnBackToMainClick(object sender, RoutedEventArgs e) //return to the Main Window
         {
+            Console.WriteLine("Closing Graph");
             this.Hide();
         }
     }
