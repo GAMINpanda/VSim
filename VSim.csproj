@@ -104,6 +104,9 @@
     <Compile Include="Scripts\MainLogic.cs" />
     <Compile Include="Scripts\TestData.cs" />
     <Compile Include="Scripts\VirusClass.cs" />
+    <Compile Include="Windows\SelectDayOne.xaml.cs">
+      <DependentUpon>SelectDayOne.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\SelectDayOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
