@@ -52,10 +52,6 @@ namespace VSim
             Trace.WriteLine("Startup loaded");
 
             //ReadMapData(1280, 640); //Will read mapdata from the data maps once written (might decrease resolution later)
-
-            SelectDayOne temp = new SelectDayOne(false);
-            temp.Show();
-
         }
 
         public void Cycle(int Day)

@@ -21,12 +21,14 @@ namespace VSim
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static SelectDayOne selectWin = new SelectDayOne(true);
+        public static SelectDayOne selectWin = new SelectDayOne();
         public SettingsWindow settingsWin = new SettingsWindow(selectWin);
         public ChartStats chartWin = new ChartStats();
         public MainWindow()
         {
             InitializeComponent();
+
+            selectWin.Show();
         }
 
         private void OnSettingsClick(object sender, RoutedEventArgs e)

@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Drawing;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -19,13 +20,11 @@ namespace VSim
     /// </summary>
     public partial class SelectDayOne : Window
     {
-        Point coords = new Point();
-        bool isSettings; //need to differentiate between the settings 'reset' and on startup
+        System.Windows.Point coords = new System.Windows.Point();
 
-        public SelectDayOne(bool isSettingsInp)
+        public SelectDayOne()
         {
             InitializeComponent();
-            this.isSettings = isSettingsInp;
         }
 
         private void GetMousePos(object sender, MouseEventArgs e) //Gets the position of the mouse relative to the WPF window
@@ -57,26 +56,29 @@ namespace VSim
                 Console.WriteLine("X: " + day1Xd + " Y: " + day1Yd);
 
                 int day1Xi = Convert.ToInt32(day1Xd);
-                int day1Yi = Convert.ToInt32(day1Yd);
+                int day1Yi = Convert.ToInt32(day1Yd); //convert to int
 
                 Console.WriteLine("X: " + day1Xi + " Y: " + day1Yi);
 
-                Main.Globals.Day1Infected = new int[] { day1Xi, day1Yi }; //set global Day1Infected to given value
+                Bitmap SelectPixBitmap = new Bitmap("/Data+Images/SelectPixel.png");
 
-                Main.Globals.cpsv.Reset(); //resets SIR values
+                System.Drawing.Color PixelCol = SelectPixBitmap.GetPixel(day1Xi, day1Yi); //get colour of selected pixel
+
+                if (PixelCol != System.Drawing.Color.Black) //if not land colour don't continue (change .Black)
+                {
+
+                    Main.Globals.Day1Infected = new int[] { day1Xi, day1Yi }; //set global Day1Infected to given value
+
+                    Main.Globals.cpsv.Reset(); //resets SIR values
+
+                    this.Hide();
+                }
             }
         }
 
         private void OnReturnClick(object sender, RoutedEventArgs e)
         {
-            if (isSettings)
-            {
-                this.Hide();
-            }
-            else
-            {
-                this.Close();
-            }
+            this.Hide();
         }
     }
 }
