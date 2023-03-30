@@ -53,7 +53,8 @@ namespace VSim
 
             //ReadMapData(1280, 640); //Will read mapdata from the data maps once written (might decrease resolution later)
 
-            //StartSelectScreen(); //Once written will select pixel to start from
+            SelectDayOne temp = new SelectDayOne(false);
+            temp.Show();
 
         }
 

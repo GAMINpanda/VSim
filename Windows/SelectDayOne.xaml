@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:VSim"
         mc:Ignorable="d"
         Title="SelectDayOne" Height="360" Width="720">
-    <Grid>
+    <Grid MouseMove="GetMousePos" MouseLeftButtonDown="SelectDayInfect">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -25,7 +25,7 @@
         </Image>
         
         <TextBox  Background="Transparent" FontSize="40px" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="0">Please Select A Starting Pixel</TextBox>
-        <TextBox Background="Red" Grid.Column="1" Grid.Row="0"></TextBox>
+        <TextBox x:Name="MousePos" Background="Red" Grid.Column="1" Grid.Row="0"></TextBox>
         <Button x:Name="return" Click="OnReturnClick" Content="Return to Main" Grid.Row="2" Grid.Column="3" Height="50" Width="150"/>
     </Grid>
 </Window>

@@ -1,1 +1,1 @@
-{"SusceptiblePixels":[[1,1]],"InfectedPixels":[[0,0]],"RecoveredPixels":[[0,1]],"DeadPixels":[[1,0]],"SIRValues":[[0,0,0,1]],"Virus":{"VirusName":"Covid","Lethality":75,"RNumber":15,"Infectivity":90,"TemperatureResist":0.29999999999999999,"MutateChance":50}}
+{"SusceptiblePixels":[],"InfectedPixels":[[0,0]],"RecoveredPixels":[],"DeadPixels":[],"SIRValues":[[1,0,0,0]],"Virus":{"VirusName":"null","Lethality":0,"RNumber":0,"Infectivity":0,"TemperatureResist":0,"MutateChance":0}}

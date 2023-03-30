@@ -19,19 +19,64 @@ namespace VSim
     /// </summary>
     public partial class SelectDayOne : Window
     {
-        public SelectDayOne()
+        Point coords = new Point();
+        bool isSettings; //need to differentiate between the settings 'reset' and on startup
+
+        public SelectDayOne(bool isSettingsInp)
         {
             InitializeComponent();
+            this.isSettings = isSettingsInp;
         }
 
-        public void GetMousePos()
+        private void GetMousePos(object sender, MouseEventArgs e) //Gets the position of the mouse relative to the WPF window
         {
-            Point coords = Mouse.GetPosition(Application.Current.MainWindow);
+            coords = Mouse.GetPosition(Application.Current.MainWindow); //makes use of inbuilt functions
+
+            this.MousePos.Text = "(" + coords.X + "," + coords.Y + ")"; //update on screen
         }
 
-        public void OnReturnClick()
+        private void SelectDayInfect(object sender, MouseButtonEventArgs e) //called when the user clicks
         {
-            this.Hide();
+            coords = Mouse.GetPosition(Application.Current.MainWindow);
+
+            double width = Application.Current.MainWindow.Width; //get width and height
+            double height = Application.Current.MainWindow.Height;
+
+            string messageBoxText = "Confirm Virus Start at " + "(" + coords.X + "," + coords.Y + ")"; //messagebox to confirm
+            string caption = "Confirm";
+            MessageBoxButton button = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Warning;
+            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+
+            if (result == MessageBoxResult.Yes) //if user confirms
+            {
+
+                double day1Xd = coords.X * (1280 / width); //select image is 1280 pixels wide, so convert relative to image
+                double day1Yd = coords.Y * (640 / height); //same for height (640 px high)
+
+                Console.WriteLine("X: " + day1Xd + " Y: " + day1Yd);
+
+                int day1Xi = Convert.ToInt32(day1Xd);
+                int day1Yi = Convert.ToInt32(day1Yd);
+
+                Console.WriteLine("X: " + day1Xi + " Y: " + day1Yi);
+
+                Main.Globals.Day1Infected = new int[] { day1Xi, day1Yi }; //set global Day1Infected to given value
+
+                Main.Globals.cpsv.Reset(); //resets SIR values
+            }
+        }
+
+        private void OnReturnClick(object sender, RoutedEventArgs e)
+        {
+            if (isSettings)
+            {
+                this.Hide();
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

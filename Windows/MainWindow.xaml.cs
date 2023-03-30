@@ -21,7 +21,7 @@ namespace VSim
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static SelectDayOne selectWin = new SelectDayOne();
+        public static SelectDayOne selectWin = new SelectDayOne(true);
         public SettingsWindow settingsWin = new SettingsWindow(selectWin);
         public ChartStats chartWin = new ChartStats();
         public MainWindow()
@@ -59,6 +59,7 @@ namespace VSim
             Main.Globals.CheckStop = true;
             chartWin.Close();
             settingsWin.Close();
+            selectWin.Close();
             this.Close();
             System.Windows.Forms.Application.Exit();
         }

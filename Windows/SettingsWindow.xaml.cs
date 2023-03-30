@@ -43,9 +43,7 @@ namespace VSim
 
         private void OnResetClick(object sender, RoutedEventArgs e)
         {
-            Main.Globals.cpsv.Reset(); //resets SIR values (untested)
-
-            selectWin.Show();
+            selectWin.Show(); //show window to reset and find day 1 infected
         }
 
         private void OnSaveVirusClick(object sender, RoutedEventArgs e)//Will save the virus parameters
