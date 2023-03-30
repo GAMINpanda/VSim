@@ -34,5 +34,15 @@ namespace VSim
             TemperatureResist = temperatureResist;
             MutateChance = mutateChance;
         }
+
+        public void OutputToConsole()
+        {
+            Console.WriteLine("VirusName: " + this.VirusName);
+            Console.WriteLine("Lethality: " + this.Lethality);
+            Console.WriteLine("RNumber: " + this.RNumber);
+            Console.WriteLine("Infectivity: " + this.Infectivity);
+            Console.WriteLine("TemperatureResist: " + this.TemperatureResist);
+            Console.WriteLine("MutateChance: " + this.MutateChance);
+        }
     }
 }

@@ -56,6 +56,41 @@ namespace VSim
             DeadPixels = new List<int[]>();
             SIRValues = new List<int[]>() { new int[] {1,0,0,0} }; //only 1 infected individual (will modify to add susceptible once data map gathering is written)
         }
+
+        public void OutputToConsole()
+        {
+            this.Virus.OutputToConsole();
+
+            Console.WriteLine("SusceptiblePixels: ");
+            Loop(this.SusceptiblePixels);
+
+            Console.WriteLine("InfectedPixels: ");
+            Loop(this.InfectedPixels);
+
+            Console.WriteLine("RecoveredPixels: ");
+            Loop(this.RecoveredPixels);
+
+            Console.WriteLine("DeadPixels: ");
+            Loop(this.DeadPixels);
+
+            Console.WriteLine("SIRValues:");
+            foreach (int[] val in SIRValues)
+            {
+                Console.WriteLine("I: " + val[0]);
+                Console.WriteLine("S: " + val[1]);
+                Console.WriteLine("R: " + val[2]);
+                Console.WriteLine("D: " + val[3]);
+            }
+        }
+
+        public void Loop(List<int[]> inputItem)
+        {
+            foreach (int[] item in inputItem)
+            {
+                Console.WriteLine(item[0]);
+                Console.WriteLine(item[1]);
+            }
+        }
     }
 
     public class FileInteraction

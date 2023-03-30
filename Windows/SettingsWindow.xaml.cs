@@ -20,10 +20,13 @@ namespace VSim
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        SelectDayOne selectWin;
         public VSim.FileInteraction file = new FileInteraction();
-        public SettingsWindow()
+        public SettingsWindow(SelectDayOne selectWinInp)
         {
             InitializeComponent();
+
+            selectWin = selectWinInp;
         }
 
         private void OnSaveClick(object sender, RoutedEventArgs e)
@@ -34,12 +37,15 @@ namespace VSim
         private void OnLoadClick(object sender, RoutedEventArgs e)
         {
             Main.Globals.cpsv = file.LoadSaveFile(); //set global SIR values to whatever is loaded (untested)
+
+            Main.Globals.cpsv.OutputToConsole();
         }
 
         private void OnResetClick(object sender, RoutedEventArgs e)
         {
             Main.Globals.cpsv.Reset(); //resets SIR values (untested)
 
+            selectWin.Show();
         }
 
         private void OnSaveVirusClick(object sender, RoutedEventArgs e)//Will save the virus parameters
@@ -51,6 +57,8 @@ namespace VSim
             Main.Globals.cpsv.Virus.RNumber = this.rnumber.Value;
             Main.Globals.cpsv.Virus.TemperatureResist = this.tempresist.Value;
             Main.Globals.cpsv.Virus.MutateChance = Convert.ToInt32(this.mutateChance.Value);
+
+            Main.Globals.cpsv.Virus.OutputToConsole();
         }
 
         private void OnReturnClick(object sender, RoutedEventArgs e)

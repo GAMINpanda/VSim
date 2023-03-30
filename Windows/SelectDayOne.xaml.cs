@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace VSim.Windows
+namespace VSim
 {
     /// <summary>
     /// Interaction logic for SelectDayOne.xaml
@@ -22,6 +22,16 @@ namespace VSim.Windows
         public SelectDayOne()
         {
             InitializeComponent();
+        }
+
+        public void GetMousePos()
+        {
+            Point coords = Mouse.GetPosition(Application.Current.MainWindow);
+        }
+
+        public void OnReturnClick()
+        {
+            this.Hide();
         }
     }
 }

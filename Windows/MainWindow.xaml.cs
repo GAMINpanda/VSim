@@ -21,7 +21,8 @@ namespace VSim
     /// </summary>
     public partial class MainWindow : Window
     {
-        public SettingsWindow settingsWin = new SettingsWindow();
+        public static SelectDayOne selectWin = new SelectDayOne();
+        public SettingsWindow settingsWin = new SettingsWindow(selectWin);
         public ChartStats chartWin = new ChartStats();
         public MainWindow()
         {

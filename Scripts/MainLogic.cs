@@ -17,7 +17,7 @@ namespace VSim
             /* Area for testing each milestone
             Test.TestDataMilestone1();
             */
-            Test.TestDataMilestone3();
+            //Test.TestDataMilestone3();
 
             while (true)
             {
