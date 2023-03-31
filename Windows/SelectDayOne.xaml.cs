@@ -21,6 +21,8 @@ namespace VSim
     public partial class SelectDayOne : Window
     {
         System.Windows.Point coords = new System.Windows.Point();
+        string filePath = System.IO.Path.GetFullPath(@"..\..\Data+Images\SelectPixel.png");
+
 
         public SelectDayOne()
         {
@@ -38,9 +40,6 @@ namespace VSim
         {
             coords = Mouse.GetPosition(Application.Current.MainWindow);
 
-            double width = Application.Current.MainWindow.Width; //get width and height
-            double height = Application.Current.MainWindow.Height;
-
             string messageBoxText = "Confirm Virus Start at " + "(" + coords.X + "," + coords.Y + ")"; //messagebox to confirm
             string caption = "Confirm";
             MessageBoxButton button = MessageBoxButton.YesNoCancel;
@@ -49,6 +48,8 @@ namespace VSim
 
             if (result == MessageBoxResult.Yes) //if user confirms
             {
+                double width = Application.Current.MainWindow.ActualWidth; //get width and height
+                double height = Application.Current.MainWindow.ActualHeight;
 
                 double day1Xd = coords.X * (1280 / width); //select image is 1280 pixels wide, so convert relative to image
                 double day1Yd = coords.Y * (640 / height); //same for height (640 px high)
@@ -60,11 +61,11 @@ namespace VSim
 
                 Console.WriteLine("X: " + day1Xi + " Y: " + day1Yi);
 
-                Bitmap SelectPixBitmap = new Bitmap("/Data+Images/SelectPixel.png");
+                Bitmap SelectPixBitmap = new Bitmap(filePath);
 
-                System.Drawing.Color PixelCol = SelectPixBitmap.GetPixel(day1Xi, day1Yi); //get colour of selected pixel
+                System.Drawing.Color PixelCol = SelectPixBitmap.GetPixel(day1Xi, day1Yi); //get colour of selected pixel ==> Issue solved using Actual Width/Height instead
 
-                if (PixelCol != System.Drawing.Color.Black) //if not land colour don't continue (change .Black)
+                if (!(PixelCol.R == 134 && PixelCol.G == 247 && PixelCol.B == 221))//if not land colour don't continue
                 {
 
                     Main.Globals.Day1Infected = new int[] { day1Xi, day1Yi }; //set global Day1Infected to given value
@@ -72,6 +73,13 @@ namespace VSim
                     Main.Globals.cpsv.Reset(); //resets SIR values
 
                     this.Hide();
+                }
+                else
+                {
+                    messageBoxText = "Cannot start in the ocean";
+                    caption = "Confirm";
+                    button = MessageBoxButton.OK;
+                    MessageBox.Show(messageBoxText, caption, button, icon);
                 }
             }
         }

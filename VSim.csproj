@@ -97,7 +97,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Content Include="ErrorLog.txt" />
     <Compile Include="Scripts\FileInteraction.cs" />
     <Compile Include="Windows\ChartStats.xaml.cs">
       <DependentUpon>ChartStats.xaml</DependentUpon>

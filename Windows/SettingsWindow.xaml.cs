@@ -39,6 +39,14 @@ namespace VSim
             Main.Globals.cpsv = file.LoadSaveFile(); //set global SIR values to whatever is loaded (untested)
 
             Main.Globals.cpsv.OutputToConsole();
+
+            this.name.Text = Main.Globals.cpsv.Virus.VirusName; //Load into sliders
+            this.lethality.Value = Main.Globals.cpsv.Virus.Lethality;
+            this.infectivity.Value = Main.Globals.cpsv.Virus.Infectivity;
+            this.rnumber.Value = Main.Globals.cpsv.Virus.RNumber;
+            this.tempresist.Value = Main.Globals.cpsv.Virus.TemperatureResist;
+            this.mutateChance.Value = Main.Globals.cpsv.Virus.MutateChance;
+
         }
 
         private void OnResetClick(object sender, RoutedEventArgs e)
