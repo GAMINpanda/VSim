@@ -97,6 +97,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Scripts\EditPixels.cs" />
     <Compile Include="Scripts\FileInteraction.cs" />
     <Compile Include="Windows\ChartStats.xaml.cs">
       <DependentUpon>ChartStats.xaml</DependentUpon>
@@ -182,6 +183,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data+Images\1280x640transDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data+Images\1280x640transChanging.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

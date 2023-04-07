@@ -1,35 +1,29 @@
 ﻿using System;
 using System.Diagnostics;
-using VSim;
+using System.IO;
 using Testing;
 
 namespace VSim
 {
     class Main
     {
+        string FilePathMain = Path.GetFullPath(@"..\..\Data+Images\1280x640transChanging.png");
+        string FilePathTemp = Path.GetFullPath(@"..\..\Data+Images\1280x640transChangingTemp.png");
+
         public void MainProcedure(MainWindow MainWin)
         {
             //will be the main running function of the program
 
             Startup(); //will handle user selection on starting pixel and draw main window
 
-
             /* Area for testing each milestone
             Test.TestDataMilestone1();
+            
+            Test.TestDataMilestone3();
             */
-            //Test.TestDataMilestone3();
 
             while (true)
             {
-                Cycle(Globals.Day); //this will be called to carry out a single cycle of the simulation
-
-                MainWin.Dispatcher.Invoke(() => { MainWin.ChangeDay(); });
-
-                Globals.Day++; //day increased each cycle
-                Trace.WriteLine("New day: "+ Globals.Day);
-
-                System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
-
                 int count = 0;
 
                 while (Globals.CheckPause) //infinte loop if paused
@@ -42,6 +36,16 @@ namespace VSim
                 }
                 if (count > 0) { Trace.WriteLine("Unpaused"); } //for debugging
 
+                Cycle(Globals.Day, MainWin); //this will be called to carry out a single cycle of the simulation
+
+                File.Copy(FilePathTemp, FilePathMain); //set the temporary image to the main image
+
+                MainWin.Dispatcher.Invoke(() => { MainWin.ChangeDay(); });
+
+                Globals.Day++; //day increased each cycle
+                Trace.WriteLine("New day: " + Globals.Day);
+
+                System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
             }
         }
 
@@ -54,8 +58,9 @@ namespace VSim
             //ReadMapData(1280, 640); //Will read mapdata from the data maps once written (might decrease resolution later)
         }
 
-        public void Cycle(int Day)
+        public void Cycle(int Day, MainWindow MainWin)
         {
+
             Trace.WriteLine("Cycle called: "+Day);
 
             if (Globals.Cure < 1) //virus can only spread whilst the cure is incomplete
@@ -70,7 +75,8 @@ namespace VSim
             //UpdateCure(TotalAble, 8000000000); //assume only those who are uninfected can work towards cure
             //VirusMutate()
 
-            //UpdatePixelColour(); //Makes changes to MainWindow image
+            MainWin.Dispatcher.Invoke(() => { MainWin.UpdateMainWin(); });
+
             //UpdateGraphData(Day, READ('SIRValues.csv')); //Update Graph ==> May slash depending on time
         }
 
@@ -79,6 +85,8 @@ namespace VSim
             public static int Day = 0;
 
             public static int[] Day1Infected = new int[2];
+
+            public static bool Day1InfectedIsSelected = false;
 
             public static double Cure = 0;
 

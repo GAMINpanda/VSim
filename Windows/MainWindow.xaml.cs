@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace VSim
@@ -24,11 +25,16 @@ namespace VSim
         public static SelectDayOne selectWin = new SelectDayOne();
         public SettingsWindow settingsWin = new SettingsWindow(selectWin);
         public ChartStats chartWin = new ChartStats();
+        public ManagePixelOutput managePixel = new ManagePixelOutput();
+        public WriteableBitmap wbmp;
+
         public MainWindow()
         {
             InitializeComponent();
 
             selectWin.Show();
+
+            wbmp = new WriteableBitmap(managePixel.ConvertBitmapImage());
         }
 
         private void OnSettingsClick(object sender, RoutedEventArgs e)
@@ -40,14 +46,25 @@ namespace VSim
         }
         private void OnPlayClick(object sender, RoutedEventArgs e)
         {
-            Main.Globals.Speed = 1; //sets default running speed
-            Console.WriteLine("Speed: "+Main.Globals.Speed);
-            Main.Globals.CheckPause = false; //sets the pause watching variable to false ==> Program can now start
+            if (Main.Globals.Day1InfectedIsSelected) //make sure there is a Day1Infected
+            {
+                Main.Globals.Speed = 1; //sets default running speed
+                Console.WriteLine("Speed: " + Main.Globals.Speed);
+                Main.Globals.CheckPause = false; //sets the pause watching variable to false ==> Program can now start
+            }
+            else
+            {
+                string messageBoxText = "Please select a starting Pixel"; //Force user to select a starting pixel
+                string caption = "Confirm";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
+            }
         }
         private void OnSpeedClick(object sender, RoutedEventArgs e)
         {
             Main.Globals.Speed = 0.5; //Running time halfs so simulation runs double as quick
-            Console.WriteLine("Speed: "+Main.Globals.Speed);
+            Console.WriteLine("Speed: " + Main.Globals.Speed);
         }
         private void OnPauseClick(object sender, RoutedEventArgs e)
         {
@@ -77,7 +94,27 @@ namespace VSim
         {
             //Change the value of 'Day' on the main window
             this.dayDisplay.Text = "Day: " + Main.Globals.Day;
-            
+        }
+
+        public void UpdateMainWin()
+        {
+
+            foreach (int[] coord in Main.Globals.cpsv.InfectedPixels)
+            {
+                managePixel.ColourPixel(coord[0], coord[1], 'i');
+            }
+
+            foreach (int[] coord in Main.Globals.cpsv.RecoveredPixels)
+            {
+                managePixel.ColourPixel(coord[0], coord[1], 'r');
+            }
+
+            foreach (int[] coord in Main.Globals.cpsv.DeadPixels)
+            {
+                managePixel.ColourPixel(coord[0], coord[1], 'd');
+            }
+
+            //get writeable bitmaps working so I can update ui
         }
     }
 }

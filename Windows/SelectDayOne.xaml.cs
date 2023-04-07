@@ -70,6 +70,8 @@ namespace VSim
 
                     Main.Globals.Day1Infected = new int[] { day1Xi, day1Yi }; //set global Day1Infected to given value
 
+                    Main.Globals.Day1InfectedIsSelected = true;
+
                     Main.Globals.cpsv.Reset(); //resets SIR values
 
                     this.Hide();
@@ -86,7 +88,18 @@ namespace VSim
 
         private void OnReturnClick(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            if (Main.Globals.Day1InfectedIsSelected)
+            {
+                this.Hide();
+            }
+            else
+            {
+                string messageBoxText = "Please select a starting Pixel"; //Force user to select a starting pixel
+                string caption = "Confirm";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+            }
         }
     }
 }
