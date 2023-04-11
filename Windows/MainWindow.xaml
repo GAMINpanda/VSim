@@ -34,11 +34,8 @@
             </Image.Source>
         </Image>
 
-        <Image Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="0" Grid.RowSpan="6">
-            <Image.Source>
-                <BitmapImage UriSource="/Data+Images/1280x640transChanging.png"/>
-            </Image.Source>
-        </Image>
+        <Image Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="0" Grid.RowSpan="6" x:Name="wbmpSource"/>
+
 
         <Button x:Name="settings" Click="OnSettingsClick" Content="Settings" Grid.Row="5" Grid.Column="6" Height="50" Width="100"/>
         <Button x:Name="play" Click="OnPlayClick" Content="Play" Grid.Row="5" Grid.Column="5" Height="50" Width="100"/>

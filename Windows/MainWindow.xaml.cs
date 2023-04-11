@@ -26,15 +26,12 @@ namespace VSim
         public SettingsWindow settingsWin = new SettingsWindow(selectWin);
         public ChartStats chartWin = new ChartStats();
         public ManagePixelOutput managePixel = new ManagePixelOutput();
-        public WriteableBitmap wbmp;
 
         public MainWindow()
         {
             InitializeComponent();
 
             selectWin.Show();
-
-            wbmp = new WriteableBitmap(managePixel.ConvertBitmapImage());
         }
 
         private void OnSettingsClick(object sender, RoutedEventArgs e)
@@ -96,7 +93,7 @@ namespace VSim
             this.dayDisplay.Text = "Day: " + Main.Globals.Day;
         }
 
-        public void UpdateMainWin()
+        public void UpdateMainWin() //apply each pixel to bitmap
         {
 
             foreach (int[] coord in Main.Globals.cpsv.InfectedPixels)
@@ -114,7 +111,7 @@ namespace VSim
                 managePixel.ColourPixel(coord[0], coord[1], 'd');
             }
 
-            //get writeable bitmaps working so I can update ui
+            wbmpSource.Source = managePixel.wbmp; //set update as image source
         }
     }
 }

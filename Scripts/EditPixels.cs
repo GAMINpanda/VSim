@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using System.Drawing;
 using System.Windows.Controls;
 
@@ -13,42 +15,43 @@ namespace VSim
 
         System.Drawing.Color Dead = System.Drawing.Color.Black;
 
-        public Bitmap SelectPixBitmap = new Bitmap(System.IO.Path.GetFullPath(@"..\..\Data+Images\1280x640transChanging.png")); //Pixel Bitmap to use
+        public byte[] pixels;
+
+        public WriteableBitmap wbmp = new WriteableBitmap(1280, 640, 96, 96, PixelFormats.Bgra32, null); //1280x640 writeable bitmap (Can change)
 
         public void ColourPixel(int Xcor, int Ycor, char col)
         {
+            Console.WriteLine("Pixel " + col + " x:" + Xcor + " y:" + Ycor);
+
             switch (col) //Set colour based off infection status
             {
                 case 'i':
-                    SelectPixBitmap.SetPixel(Xcor, Ycor, Infected);
+                    ChangePixel(Xcor, Ycor, Infected.R, Infected.G, Infected.B);
                     break;
                 case 'r':
-                    SelectPixBitmap.SetPixel(Xcor, Ycor, Recovered);
+                    ChangePixel(Xcor, Ycor, Recovered.R, Recovered.G, Recovered.B);
                     break;
                 case 'd':
-                    SelectPixBitmap.SetPixel(Xcor, Ycor, Dead);
+                    ChangePixel(Xcor, Ycor, Recovered.R, Recovered.G, Recovered.B);
                     break;
                 default:
                     break;
             }
         }
 
-        public BitmapImage ConvertBitmapImage() //convert bitmap to bitmapimage
+        public void ChangePixel(int x, int y, int r, int g, int b)
         {
-            // Create the image element.
-            System.Windows.Controls.Image simpleImage = new System.Windows.Controls.Image();
-            simpleImage.Width = 200;
+            byte red = Convert.ToByte(r);
+            byte green = Convert.ToByte(g);
+            byte blue = Convert.ToByte(b);
 
-            // Create source.
-            BitmapImage bi = new BitmapImage();
-            // BitmapImage.UriSource must be in a BeginInit/EndInit block.
-            bi.BeginInit();
-            bi.UriSource = new Uri(System.IO.Path.GetFullPath(@"..\..\Data+Images\1280x640transChanging.png"), UriKind.RelativeOrAbsolute);
-            bi.EndInit();
-            // Set the image source.
-            simpleImage.Source = bi;
+            byte alpha = 255;
 
-            return bi;
+            byte[] colourdata = { blue, green, red, alpha }; //combine pixel colour data
+            Int32Rect rect = new Int32Rect(x, y, 1, 1);
+            int stride = wbmp.PixelWidth * wbmp.Format.BitsPerPixel / 8;
+            wbmp.WritePixels(rect, colourdata, stride, 0); //write pixel into writeable bitmap
+
         }
     }
 }

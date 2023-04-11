@@ -7,8 +7,6 @@ namespace VSim
 {
     class Main
     {
-        string FilePathMain = Path.GetFullPath(@"..\..\Data+Images\1280x640transChanging.png");
-        string FilePathTemp = Path.GetFullPath(@"..\..\Data+Images\1280x640transChangingTemp.png");
 
         public void MainProcedure(MainWindow MainWin)
         {
@@ -37,8 +35,6 @@ namespace VSim
                 if (count > 0) { Trace.WriteLine("Unpaused"); } //for debugging
 
                 Cycle(Globals.Day, MainWin); //this will be called to carry out a single cycle of the simulation
-
-                File.Copy(FilePathTemp, FilePathMain); //set the temporary image to the main image
 
                 MainWin.Dispatcher.Invoke(() => { MainWin.ChangeDay(); });
 
