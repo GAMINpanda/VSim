@@ -1,1 +1,1 @@
-{"SusceptiblePixels":[],"InfectedPixels":[[624,114]],"RecoveredPixels":[],"DeadPixels":[],"SIRValues":[[1,86275,0,0]],"Virus":{"VirusName":"Chicken","Lethality":16,"RNumber":6.3499999999999996,"Infectivity":48,"TemperatureResist":0.20000000000000001,"MutateChance":39}}
+{"SusceptiblePixels":[],"InfectedPixels":[[620,116]],"RecoveredPixels":[],"DeadPixels":[],"SIRValues":[[620,116,1,99216,0,0]],"Virus":{"VirusName":"Covid","Lethality":41,"RNumber":3.3500000000000001,"Infectivity":31,"TemperatureResist":0.10000000000000001,"MutateChance":55}}

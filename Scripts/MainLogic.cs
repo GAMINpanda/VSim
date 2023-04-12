@@ -7,6 +7,7 @@ namespace VSim
 {
     class Main
     {
+        public CycleFunctions cycle = new CycleFunctions();
 
         public void MainProcedure(MainWindow MainWin)
         {
@@ -50,14 +51,14 @@ namespace VSim
 
             if (Globals.Cure < 1) //virus can only spread whilst the cure is incomplete
             {;
-                //CheckSusceptiblePixels(); //Gather Pixels that are susceptible to infection
-                //CalcNewInfectedPixels(); //Dictate whether to infect or not
+                cycle.CheckSusceptiblePixels(); //Gather Pixels that are susceptible to infection
+                cycle.CalcNewInfectedPixels(); //Dictate whether to infect or not
             }
 
-            //CalcRecoveredPixels(); //Recovers regardless of the cure being created or not
+            cycle.CalcRecoveredPixels(); //Recovers regardless of the cure being created or not
 
-            //int TotalAble = CalcNewSIR(); 
-            //UpdateCure(TotalAble, 8000000000); //assume only those who are uninfected can work towards cure
+            long TotalAble = cycle.CalcNewSIR(); 
+            cycle.UpdateCure(TotalAble); //assume only those who are uninfected can work towards cure
             //VirusMutate()
 
             MainWin.Dispatcher.Invoke(() => { MainWin.UpdateMainWin(); });
