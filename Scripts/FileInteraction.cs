@@ -50,11 +50,12 @@ namespace VSim
 
         public void Reset() //reset simulation
         {
+            DataMap Data = new DataMap();
             SusceptiblePixels = new List<int[]>();
             InfectedPixels = new List<int[]>() { Main.Globals.Day1Infected};
             RecoveredPixels = new List<int[]>();
             DeadPixels = new List<int[]>();
-            SIRValues = new List<int[]>() { new int[] {1,0,0,0} }; //only 1 infected individual (will modify to add susceptible once data map gathering is written)
+            SIRValues = new List<int[]>() { new int[] {1, Convert.ToInt32(Data.GetPop(Main.Globals.Day1Infected[0], Main.Globals.Day1Infected[1]) * 100000),0,0} }; //only 1 infected individual
         }
 
         public void OutputToConsole()

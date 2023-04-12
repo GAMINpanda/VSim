@@ -98,6 +98,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Scripts\CycleFunctions.cs" />
     <Compile Include="Scripts\DataMap.cs" />
     <Compile Include="Scripts\EditPixels.cs" />
     <Compile Include="Scripts\FileInteraction.cs" />
@@ -178,7 +179,7 @@
     <Resource Include="Data+Images\GDPperCapita.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data+Images\TemperatureMap %281%29.jpg" />
+    <Resource Include="Data+Images\TemperatureMap.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data+Images\SelectPixel.png" />

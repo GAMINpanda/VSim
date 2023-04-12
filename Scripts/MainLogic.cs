@@ -12,8 +12,6 @@ namespace VSim
         {
             //will be the main running function of the program
 
-            Startup(); //will handle user selection on starting pixel and draw main window
-
             /* Area for testing each milestone
             Test.TestDataMilestone1();
             
@@ -43,15 +41,6 @@ namespace VSim
 
                 System.Threading.Thread.Sleep(Convert.ToInt32(1000 * Globals.Speed)); //waits depending on simulation speed
             }
-        }
-
-        public void Startup()
-        {
-            //Begins program
-
-            Trace.WriteLine("Startup loaded");
-
-            //ReadMapData(1280, 640); //Will read mapdata from the data maps once written (might decrease resolution later)
         }
 
         public void Cycle(int Day, MainWindow MainWin)
