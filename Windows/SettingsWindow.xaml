@@ -37,13 +37,13 @@
 
         <DockPanel Grid.Row="1" Grid.Column="1" >
             <TextBox Text="Lethality" IsReadOnly="True"></TextBox>
-            <Slider x:Name="lethality" Width="120" Maximum="100" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True"/>
+            <Slider x:Name="lethality" Width="120" Maximum="50" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True"/>
         </DockPanel>
         <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding ElementName=lethality, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
         
         <DockPanel Grid.Row="2" Grid.Column="1" >
             <TextBox Text="RNumber" IsReadOnly="True"></TextBox>
-            <Slider x:Name="rnumber" Width="120" Maximum="20" Minimum="0.1" TickFrequency="0.25" IsSnapToTickEnabled="True"/>
+            <Slider x:Name="rnumber" Width="120" Maximum="5" Minimum="0.1" TickFrequency="0.25" IsSnapToTickEnabled="True"/>
         </DockPanel>
         <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding ElementName=rnumber, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
         
@@ -61,7 +61,7 @@
         
         <DockPanel Grid.Row="5" Grid.Column="1" >
             <TextBox Text="Mutate Chance" IsReadOnly="True"></TextBox>
-            <Slider x:Name="mutateChance" Width="120" Maximum="100" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True"/>
+            <Slider x:Name="mutateChance" Width="120" Maximum="20" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True"/>
         </DockPanel>
         <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding ElementName=mutateChance, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
     </Grid>

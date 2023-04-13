@@ -29,6 +29,8 @@ namespace VSim
         public void CalcNewInfectedPixels()//Calculate which of the Susceptible Pixels become infected
         {
             int[] coord;
+
+            //Console.WriteLine("sus count: "+ Main.Globals.cpsv.SusceptiblePixels.Count);
             for(int i = 0; i < Main.Globals.cpsv.SusceptiblePixels.Count; i++)
             {
                 coord = Main.Globals.cpsv.SusceptiblePixels[i];
@@ -40,17 +42,23 @@ namespace VSim
 
                 double RawNumber = Math.Pow((pop / gdp), temp * Main.Globals.cpsv.Virus.RNumber); //Number represents susceptibility to infection
 
-                double d = 1; //some damping factor to test impact on infection
+                //Console.WriteLine("RawNumber: " + RawNumber);
+
+                double d = 2; //some damping factor to test impact on infection
                 double d2 = 1; //some other damping factor
 
                 int valueToBeat = Convert.ToInt32(Main.Globals.cpsv.Virus.Infectivity * d2); //Higher per infectivity
 
+                //Console.WriteLine("ValueToBeat: " + valueToBeat);
+
                 Random random = new Random();
                 int ranIteration;
 
-                for (int j = 0; j < RawNumber*d; j++) //more attempts the higher raw number
+                for (int j = 0; j < Convert.ToInt32(RawNumber*d); j++) //more attempts the higher raw number
                 {
                     ranIteration = random.Next(0, 100);
+
+                    //Console.WriteLine("RandomIteration: " + ranIteration);
 
                     if (ranIteration <= valueToBeat) //if random less than valueToBeat then pixel is infected (higher valueToBeat means more chance of infectvity)
                     {
@@ -69,27 +77,32 @@ namespace VSim
 
             foreach (int[] vals in Main.Globals.cpsv.SIRValues) //iterate through all SIR pixels
             {
-                if (Main.Globals.cpsv.InfectedPixels.Contains(new int[] { vals[0], vals[1] })){ //if infected rather than dead or susceptible
+                //Console.WriteLine("I:" + vals[2] + "S:" + vals[3]+ "R:" + vals[4] + "D:" + vals[5]);
+                foreach (int[] valsInfect in Main.Globals.cpsv.InfectedPixels)
+                {
+                    if (valsInfect.SequenceEqual(new int[] { vals[0], vals[1] })){
+                        PopulationTotal = vals[2] + vals[3] + vals[4] + vals[5];
 
-                    PopulationTotal = vals[2] + vals[3] + vals[4] + vals[5];
+                        if (vals[4] > PopulationTotal * 0.5) //if majority recovered considered a 'recovered' pixel
+                        {
+                            Console.WriteLine("Majority recovered");
+                            Main.Globals.cpsv.InfectedPixels.Remove(valsInfect); //no longer 'infected' persay
+                            Main.Globals.cpsv.RecoveredPixels.Add(valsInfect); //now 'recovered'
+                        }
 
-                    if (vals[4] > PopulationTotal * 0.5) //if majority recovered considered a 'recovered' pixel
-                    {
-                        Main.Globals.cpsv.InfectedPixels.Remove(new int[] { vals[0], vals[1] }); //no longer 'infected' persay
-                        Main.Globals.cpsv.RecoveredPixels.Add(new int[] { vals[0], vals[1] }); //now 'recovered'
-                    }
-
-                    if (vals[5] > PopulationTotal * 0.5) //if majority dead considered a 'dead' pixel
-                    {
-                        Main.Globals.cpsv.InfectedPixels.Remove(new int[] { vals[0], vals[1] }); //no longer 'infected' persay
-                        Main.Globals.cpsv.DeadPixels.Add(new int[] { vals[0], vals[1] }); //now 'dead'
+                        if (vals[5] > PopulationTotal * 0.5) //if majority dead considered a 'dead' pixel
+                        {
+                            Console.WriteLine("Majority dead");
+                            Main.Globals.cpsv.InfectedPixels.Remove(valsInfect); //no longer 'infected' persay
+                            Main.Globals.cpsv.DeadPixels.Add(valsInfect); //now 'dead'
+                        }
                     }
                 }
 
             }
         }
 
-        public long CalcNewSIR()//Calculate individual pixel statistics
+        public double CalcNewSIR(MainWindow MainWin)//Calculate individual pixel statistics
         {
             VirusClass virus = Main.Globals.cpsv.Virus;
             long TotalSusceptible = 0; //will represent global sir stats (no individual area needs long but global may)
@@ -108,12 +121,14 @@ namespace VSim
             int newdead;
             int total;
 
-            double d1 = 1; //some dampening factor
-            double d2 = 0.2; //damping factor representing proportion of people who recover each cycle (~20%)
+            double power;
+
+            double d1 = 0.5; //some dampening factor
+            double d2 = 0.05; //damping factor representing proportion of people who recover each cycle (~5%)
 
             double couldBeInfected;
 
-            for( int i = 0; i< Main.Globals.cpsv.SIRValues.Count;i++)
+            for (int i = 0; i < Main.Globals.cpsv.SIRValues.Count; i++)
             {
                 vals = Main.Globals.cpsv.SIRValues[i];
                 sus = vals[3];
@@ -122,13 +137,23 @@ namespace VSim
                 dead = vals[5];
                 total = sus + infect + recover + dead;
 
-                Console.WriteLine(sus);
-                Console.WriteLine(infect);
-                Console.WriteLine(recover);
-                Console.WriteLine(dead);
+                /*
+                Console.WriteLine("Sus: " + sus);
+                Console.WriteLine("Infect: " + infect);
+                Console.WriteLine("Recover: " + recover);
+                Console.WriteLine("Dead: " + dead);
                 Console.WriteLine(virus.MutateChance * d1 * recover);
+                */
 
-                couldBeInfected = sus * (Math.Exp(-(virus.RNumber * (virus.MutateChance*d1*recover) + (double)infect/(double)total)) - (Math.E - 1)); //this equation derived from SIR equation
+                power = Math.Exp(-(virus.RNumber * ((virus.MutateChance * d1 * recover) + ((double)infect / (double)total))));
+
+                if (power < 1) { //won't allow more to be infected than susceptible
+                    couldBeInfected = sus * power; //this equation derived from SIR equation
+                }
+                else
+                {
+                    couldBeInfected = sus;
+                }
 
                 newinfect = infect + Convert.ToInt32(((double)virus.Infectivity / (double)100) * couldBeInfected); //calculate new values of infected, recovered, dead and susceptible in the pixel
                 newrecover = recover + Convert.ToInt32((newinfect * (1 - virus.Lethality / 100) * d2));
@@ -140,20 +165,27 @@ namespace VSim
 
                 Main.Globals.cpsv.SIRValues[i] = new int[] { vals[0], vals[1], newinfect, newsus, newrecover, newdead }; //stage changes in SIR
 
-                TotalSusceptible = TotalSusceptible - sus + newsus; //update global values
-                TotalInfected = TotalInfected - infect + newinfect;
-                TotalRecovered = TotalRecovered - recover + newrecover;
-                TotalDead = TotalDead - dead + newdead;
+                TotalSusceptible = TotalSusceptible + newsus; //update global values
+                TotalInfected = TotalInfected + newinfect;
+                TotalRecovered = TotalRecovered + newrecover;
+                TotalDead = TotalDead + newdead;
             }
 
-            return Convert.ToInt64((TotalRecovered + TotalSusceptible) * 0.01); //for use in cure development
+            Console.WriteLine("TotalSus: " + TotalSusceptible);
+            Console.WriteLine("TotalInfected: " + TotalInfected);
+            Console.WriteLine("TotalRecovered: "+ TotalRecovered);
+            Console.WriteLine("TotalDead: " + TotalDead);
+
+            MainWin.Dispatcher.Invoke(() => { MainWin.chartWin.Update(TotalSusceptible, TotalInfected, TotalRecovered,TotalDead); }); //update graph
+
+            return ((double)(TotalRecovered + TotalSusceptible)/(double)(TotalInfected + TotalSusceptible + TotalRecovered + TotalDead) * 0.1); //for use in cure development
         }
 
-        public void UpdateCure(long TotalAble) //update cure progression
+        public void UpdateCure(double TotalAble) //update cure progression
         {
-            long TotalPop = 8000000000; //worldpopulation
+            Main.Globals.Cure = Main.Globals.Cure + TotalAble * (1 / Main.Globals.cpsv.Virus.MutateChance + 1) * 0.1; //higher mutation = harder to cure
 
-            Main.Globals.Cure = Main.Globals.Cure + (TotalAble / TotalPop + 1) * (1 / Main.Globals.cpsv.Virus.MutateChance + 1);
+            Console.WriteLine("Cure: " + Main.Globals.Cure);
         }
 
         public void Check(int[] coords)//check if pixel is susceptible/infected/recovered already or water

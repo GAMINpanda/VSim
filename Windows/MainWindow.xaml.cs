@@ -70,7 +70,7 @@ namespace VSim
         private void OnStopClick(object sender, RoutedEventArgs e)
         {
             //Will stop the simulation (and closes window)
-            Console.WriteLine("Applicatin stopping");
+            Console.WriteLine("Application stopping");
             Main.Globals.CheckPause = true;
             Main.Globals.CheckStop = true;
             chartWin.Close();
@@ -90,7 +90,7 @@ namespace VSim
         public void ChangeDay()
         {
             //Change the value of 'Day' on the main window
-            this.dayDisplay.Text = "Day: " + Main.Globals.Day;
+            this.dayDisplay.Text = "Day: " + Main.Globals.Day + ", Cure: " + Main.Globals.Cure;
         }
 
         public void UpdateMainWin() //apply each pixel to bitmap

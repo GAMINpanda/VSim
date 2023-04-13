@@ -57,9 +57,9 @@ namespace VSim
 
             cycle.CalcRecoveredPixels(); //Recovers regardless of the cure being created or not
 
-            long TotalAble = cycle.CalcNewSIR(); 
+            double TotalAble = cycle.CalcNewSIR(MainWin); 
             cycle.UpdateCure(TotalAble); //assume only those who are uninfected can work towards cure
-            //VirusMutate()
+            Globals.cpsv.Virus.Mutate(); //chance of mutating each cycle
 
             MainWin.Dispatcher.Invoke(() => { MainWin.UpdateMainWin(); });
 
@@ -83,6 +83,8 @@ namespace VSim
             public static double Speed = 1;
 
             public static CurrentPixelStatusAndVirus cpsv = new CurrentPixelStatusAndVirus(new VirusClass());
+
+            public static string FilePath = System.IO.Path.GetFullPath(@"..\..\Data+Images");
         }
     }
 }

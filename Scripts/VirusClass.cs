@@ -44,5 +44,36 @@ namespace VSim
             Console.WriteLine("TemperatureResist: " + this.TemperatureResist);
             Console.WriteLine("MutateChance: " + this.MutateChance);
         }
+
+        public void Mutate()
+        {
+            Random random = new Random();
+            int rand = random.Next(0, 100);
+            int randomChange;
+
+            if(rand < MutateChance) //virus mutates roughly MutateChance% of days
+            {
+                rand = random.Next(0, 4); //4 different items could mutuate
+                randomChange = random.Next(0, 10); //some variation
+
+                switch (rand)
+                {
+                    case 0://affects lethality
+                        Lethality = Lethality + randomChange - 5;
+                        break;
+                    case 1: //affects rnumber
+                        RNumber = RNumber + ((double)randomChange/(double)10) - 0.5;
+                        break;
+                    case 2://affects infectivity
+                        Infectivity = Infectivity + randomChange - 5;
+                        break;
+                    case 3: //affects temperature resistance
+                        TemperatureResist = TemperatureResist + ((double)randomChange / (double)20) - 0.25;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

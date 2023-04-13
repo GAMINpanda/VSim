@@ -15,13 +15,11 @@ namespace VSim
 
         System.Drawing.Color Dead = System.Drawing.Color.Black;
 
-        public byte[] pixels;
-
         public WriteableBitmap wbmp = new WriteableBitmap(1280, 640, 96, 96, PixelFormats.Bgra32, null); //1280x640 writeable bitmap (Can change)
 
         public void ColourPixel(int Xcor, int Ycor, char col)
         {
-            Console.WriteLine("Pixel " + col + " x:" + Xcor + " y:" + Ycor);
+            //Console.WriteLine("Pixel " + col + " x:" + Xcor + " y:" + Ycor);
 
             switch (col) //Set colour based off infection status
             {

@@ -45,6 +45,7 @@
         <Button x:Name="stop" Click="OnStopClick" Content="Stop" Grid.Row="5" Grid.Column="3" Height="50" Width="100"/>
         <TextBlock x:Name="dayDisplay" Grid.Column="0" Grid.Row="5" Background="Aqua">
             Day:
+            Cure:
         </TextBlock>
     </Grid>
 </Window>
