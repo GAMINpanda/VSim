@@ -1,1 +1,1 @@
-{"SusceptiblePixels":[],"InfectedPixels":[[626,128]],"RecoveredPixels":[],"DeadPixels":[],"SIRValues":[[626,128,1,80392,0,0]],"Virus":{"VirusName":"TheHive","Lethality":16,"RNumber":1.8500000000000001,"Infectivity":48,"TemperatureResist":0.30000000000000004,"MutateChance":4}}
+{"SusceptiblePixels":[],"InfectedPixels":[[184,34]],"RecoveredPixels":[],"DeadPixels":[],"SIRValues":[[184,34,36762,44252,2696,1389]],"Virus":{"VirusName":"Test","Lethality":34,"RNumber":1.8500000000000001,"Infectivity":48,"TemperatureResist":0.30000000000000004,"MutateChance":4}}

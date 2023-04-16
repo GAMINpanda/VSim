@@ -95,6 +95,7 @@ namespace VSim
 
         public void UpdateMainWin() //apply each pixel to bitmap
         {
+            managePixel.Clear();
 
             foreach (int[] coord in Main.Globals.cpsv.InfectedPixels)
             {
