@@ -193,5 +193,11 @@
   <ItemGroup>
     <Resource Include="Data+Images\1280x640transChanging.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImagesLowRes\GDPperCapitaVeryLowRes.png" />
+    <Resource Include="ImagesLowRes\PopulationDensityVeryLowRes.jpg" />
+    <Resource Include="ImagesLowRes\SelectPixelVeryLowRes.png" />
+    <Resource Include="ImagesLowRes\TemperatureMapVeryLowRes.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

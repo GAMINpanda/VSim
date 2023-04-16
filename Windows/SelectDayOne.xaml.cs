@@ -21,7 +21,7 @@ namespace VSim
     public partial class SelectDayOne : Window
     {
         System.Windows.Point coords = new System.Windows.Point();
-        string filePath = System.IO.Path.GetFullPath(@"..\..\Data+Images\SelectPixel.png");
+        string filePath = System.IO.Path.GetFullPath(@"..\..\ImagesLowRes\SelectPixelVeryLowRes.png");
 
 
         public SelectDayOne()
@@ -48,11 +48,13 @@ namespace VSim
 
             if (result == MessageBoxResult.Yes) //if user confirms
             {
+                Bitmap SelectPixBitmap = new Bitmap(filePath);
+
                 double width = Application.Current.MainWindow.ActualWidth; //get width and height
                 double height = Application.Current.MainWindow.ActualHeight;
 
-                double day1Xd = coords.X * (1280 / width); //select image is 1280 pixels wide, so convert relative to image
-                double day1Yd = coords.Y * (640 / height); //same for height (640 px high)
+                double day1Xd = coords.X * (SelectPixBitmap.Width / width); //so convert relative to image
+                double day1Yd = coords.Y * (SelectPixBitmap.Height / height);
 
                 Console.WriteLine("X: " + day1Xd + " Y: " + day1Yd);
 
@@ -60,8 +62,6 @@ namespace VSim
                 int day1Yi = Convert.ToInt32(day1Yd); //convert to int
 
                 Console.WriteLine("X: " + day1Xi + " Y: " + day1Yi);
-
-                Bitmap SelectPixBitmap = new Bitmap(filePath);
 
                 System.Drawing.Color PixelCol = SelectPixBitmap.GetPixel(day1Xi, day1Yi); //get colour of selected pixel ==> Issue solved using Actual Width/Height instead
 

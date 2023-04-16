@@ -9,9 +9,9 @@ namespace VSim
 {
     public class DataMap
     {
-        Bitmap temperature = new Bitmap(Main.Globals.FilePath + "/TemperatureMap.jpg");
-        Bitmap population = new Bitmap(Main.Globals.FilePath + "/PopulationDensity.jpg");
-        Bitmap GDP = new Bitmap(Main.Globals.FilePath + "/GDPperCapita.png"); //need to edit to be same format as other two maps
+        Bitmap temperature = new Bitmap(Main.Globals.FilePath + "/TemperatureMapVeryLowRes.jpg");
+        Bitmap population = new Bitmap(Main.Globals.FilePath + "/PopulationDensityVeryLowRes.jpg");
+        Bitmap GDP = new Bitmap(Main.Globals.FilePath + "/GDPperCapitaVeryLowRes.png"); //need to edit to be same format as other two maps
 
         public DataMap()
         {

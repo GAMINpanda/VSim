@@ -17,11 +17,10 @@ namespace VSim
     {
         private Func<double, string> _yFormatter;
 
-        public StackedAreaSeries Susceptible = new StackedAreaSeries{ Title = "Susceptible", Values = new ChartValues<DateTimePoint>{}, LineSmoothness = 0 };
-        public StackedAreaSeries Infected = new StackedAreaSeries { Title = "Infected", Values = new ChartValues<DateTimePoint> { }, LineSmoothness = 0 };
-        public StackedAreaSeries Recovered = new StackedAreaSeries { Title = "Recovered", Values = new ChartValues<DateTimePoint> { }, LineSmoothness = 0 };
-        public StackedAreaSeries Dead = new StackedAreaSeries { Title = "Dead", Values = new ChartValues<DateTimePoint> { }, LineSmoothness = 0 };
-
+        public StackedAreaSeries Susceptible = new StackedAreaSeries{ Title = "Susceptible", Values = new ChartValues<DateTimePoint>{ new DateTimePoint(new DateTime(1, 1, 1), 0)}, LineSmoothness = 0 };
+        public StackedAreaSeries Infected = new StackedAreaSeries { Title = "Infected", Values = new ChartValues<DateTimePoint> { new DateTimePoint(new DateTime(1, 1, 1), 0) }, LineSmoothness = 0 };
+        public StackedAreaSeries Recovered = new StackedAreaSeries { Title = "Recovered", Values = new ChartValues<DateTimePoint> { new DateTimePoint(new DateTime(1, 1, 1), 0) }, LineSmoothness = 0 };
+        public StackedAreaSeries Dead = new StackedAreaSeries { Title = "Dead", Values = new ChartValues<DateTimePoint> { new DateTimePoint(new DateTime(1, 1, 1), 0) }, LineSmoothness = 0 };
         public ChartStats()
         {
             InitializeComponent();
@@ -44,10 +43,10 @@ namespace VSim
 
         public void Update(long TotalSusceptible, long TotalInfected, long TotalRecovered, long TotalDead) //update the graph
         {
-            Susceptible.Values.Add(new DateTimePoint(new DateTime(Main.Globals.Day, 1, 1), ((double)TotalSusceptible/(double)1000000))); //somehow unrepresentable --> Look at later
-            Infected.Values.Add(new DateTimePoint(new DateTime(Main.Globals.Day, 1, 1), ((double)TotalInfected / (double)1000000)));
-            Recovered.Values.Add(new DateTimePoint(new DateTime(Main.Globals.Day, 1, 1), ((double)TotalRecovered / (double)1000000)));
-            Dead.Values.Add(new DateTimePoint(new DateTime(Main.Globals.Day, 1, 1), ((double)TotalDead / (double)1000000))); //add SIR totals in millions
+            Susceptible.Values.Add(new DateTimePoint(new DateTime(Main.Globals.Day + 1, 1, 1), ((double)TotalSusceptible/(double)1000000)));
+            Infected.Values.Add(new DateTimePoint(new DateTime(Main.Globals.Day + 1, 1, 1), ((double)TotalInfected / (double)1000000)));
+            Recovered.Values.Add(new DateTimePoint(new DateTime(Main.Globals.Day + 1, 1, 1), ((double)TotalRecovered / (double)1000000)));
+            Dead.Values.Add(new DateTimePoint(new DateTime(Main.Globals.Day + 1, 1, 1), ((double)TotalDead / (double)1000000))); //add SIR totals in millions
 
             SeriesCollection = new SeriesCollection
             {
@@ -60,6 +59,9 @@ namespace VSim
             XFormatter = val => new DateTime((long)val).ToString("yyyy"); //Deals with labelling
             YFormatter = val => val.ToString("N") + "M";
 
+            ChartMain.Series = SeriesCollection;
+            Xaxis.LabelFormatter = XFormatter;
+            Yaxis.LabelFormatter= YFormatter;
             DataContext = this;
         }
 
@@ -110,5 +112,5 @@ namespace VSim
             this.Hide();
         }
     }
-    
+
 }

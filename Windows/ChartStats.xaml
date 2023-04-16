@@ -19,12 +19,12 @@
             </Button>
         </StackPanel>
         <Button Click="OnBackToMainClick"> Return to Main</Button>
-        <lvc:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}"  LegendLocation="Right">
+        <lvc:CartesianChart x:Name="ChartMain" Grid.Row="2" Series="{Binding SeriesCollection}"  LegendLocation="Right">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Year" LabelFormatter="{Binding XFormatter}"></lvc:Axis>
+                <lvc:Axis x:Name="Xaxis" Title="Year" LabelFormatter="{Binding XFormatter}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Population" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                <lvc:Axis x:Name="Yaxis" Title="Population" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>

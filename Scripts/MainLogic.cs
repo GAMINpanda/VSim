@@ -68,7 +68,7 @@ namespace VSim
 
         public static class Globals { //Defining all global variables to be used below
 
-            public static int Day = 0;
+            public static int Day = 1; //one to work with charts
 
             public static int[] Day1Infected = new int[2];
 
@@ -84,7 +84,7 @@ namespace VSim
 
             public static CurrentPixelStatusAndVirus cpsv = new CurrentPixelStatusAndVirus(new VirusClass());
 
-            public static string FilePath = System.IO.Path.GetFullPath(@"..\..\Data+Images");
+            public static string FilePath = System.IO.Path.GetFullPath(@"..\..\ImagesLowRes");
         }
     }
 }

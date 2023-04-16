@@ -63,7 +63,7 @@ namespace VSim
                     if (ranIteration <= valueToBeat) //if random less than valueToBeat then pixel is infected (higher valueToBeat means more chance of infectvity)
                     {
                         Main.Globals.cpsv.InfectedPixels.Add(coord); //Pixel now infected
-                        Main.Globals.cpsv.SIRValues.Add(new int[] { coord[0], coord[1], 1, Convert.ToInt32(Data.GetPop(coord[0], coord[1]) * 100000), 0, 0 }); //Add SIR to Infected Pixels
+                        Main.Globals.cpsv.SIRValues.Add(new int[] { coord[0], coord[1], 1, Convert.ToInt32(Data.GetPop(coord[0], coord[1]) * 10000), 0, 0 }); //Add SIR to Infected Pixels
                         Main.Globals.cpsv.SusceptiblePixels.Remove(coord); //no longer susceptible
                         break;
                     }

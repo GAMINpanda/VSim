@@ -15,7 +15,7 @@ namespace VSim
 
         System.Drawing.Color Dead = System.Drawing.Color.Black;
 
-        public WriteableBitmap wbmp = new WriteableBitmap(1280, 640, 96, 96, PixelFormats.Bgra32, null); //1280x640 writeable bitmap (Can change)
+        public WriteableBitmap wbmp = new WriteableBitmap(384, 192, 96, 96, PixelFormats.Bgra32, null); //1280x640 writeable bitmap (Can change)
 
         public void ColourPixel(int Xcor, int Ycor, char col)
         {
@@ -30,7 +30,7 @@ namespace VSim
                     ChangePixel(Xcor, Ycor, Recovered.R, Recovered.G, Recovered.B);
                     break;
                 case 'd':
-                    ChangePixel(Xcor, Ycor, Recovered.R, Recovered.G, Recovered.B);
+                    ChangePixel(Xcor, Ycor, Dead.R, Dead.G, Dead.B);
                     break;
                 default:
                     break;
