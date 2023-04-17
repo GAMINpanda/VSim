@@ -78,7 +78,7 @@ namespace VSim
                     if (ranIteration <= valueToBeat) //if random less than valueToBeat then pixel is infected (higher valueToBeat means more chance of infectvity)
                     {
                         Main.Globals.cpsv.InfectedPixels.Add(coord); //Pixel now infected
-                        Main.Globals.cpsv.SIRValues.Add(new int[] { coord[0], coord[1], 1, Convert.ToInt32(Data.GetPop(coord[0], coord[1]) * 100000), 0, 0 }); //Add SIR to Infected Pixels
+                        Main.Globals.cpsv.SIRValues.Add(new int[] { coord[0], coord[1], 1, Convert.ToInt32(Data.GetPop(coord[0], coord[1]) * 1000000), 0, 0 }); //Add SIR to Infected Pixels
                         Main.Globals.cpsv.SusceptiblePixels.Remove(coord); //no longer susceptible
                         break;
                     }
@@ -110,14 +110,14 @@ namespace VSim
 
                             if ((double)vals[4] > (double)PopulationTotalAfflicted * 0.5) //if majority recovered considered a 'recovered' pixel
                             {
-                                Console.WriteLine("Majority recovered");
+                                //Console.WriteLine("Majority recovered");
                                 tempList.Add(valsInfect[i]); //no longer 'infected' persay
                                 Main.Globals.cpsv.RecoveredPixels.Add(valsInfect[i]); //now 'recovered'
                             }
 
                             if ((double)vals[5] > (double)PopulationTotalAfflicted * 0.5) //if majority dead considered a 'dead' pixel
                             {
-                                Console.WriteLine("Majority dead");
+                                //Console.WriteLine("Majority dead");
                                 tempList.Add(valsInfect[i]);
                                 Main.Globals.cpsv.DeadPixels.Add(valsInfect[i]); //now 'dead'
                             }
@@ -172,14 +172,6 @@ namespace VSim
                 if (!((recover > infect + sus) && ((double)infect/(double)total < 0.2))) //if recovered > infected + sus and infected less than 20% of population then don't bother calculating (more efficient)
                 {
 
-                    /*
-                    Console.WriteLine("Sus: " + sus);
-                    Console.WriteLine("Infect: " + infect);
-                    Console.WriteLine("Recover: " + recover);
-                    Console.WriteLine("Dead: " + dead);
-                    Console.WriteLine(virus.MutateChance * d1 * recover);
-                    */
-
                     power = Math.Exp(-(virus.RNumber * ((virus.MutateChance * d1 * recover) + ((double)infect / (double)total))));
 
                     if (power < 1)
@@ -207,6 +199,8 @@ namespace VSim
                     newsus = sus;
                     newrecover = recover + Convert.ToInt32((double)dif * (((double)100 - (double)virus.Lethality) / (double)100) * d2);
                     newdead = Convert.ToInt32((double)dif * (1 - d2));
+
+                    Main.Globals.cpsv.SIRValues[i] = new int[] { vals[0], vals[1], newinfect, newsus, newrecover, newdead }; //stage changes in SIR
                 }
 
                 TotalSusceptible = TotalSusceptible + newsus; //update global values

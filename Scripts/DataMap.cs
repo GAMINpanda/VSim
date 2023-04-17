@@ -33,22 +33,28 @@ namespace VSim
 
             if (redBias >= blueBias)
             {
-                return redBias;
+                //return redBias;
+                return (double)red / (double)255;
             }
             else
             {
-                return blueBias;
+                //return blueBias;
+               return (double)blue / (double)255;
             }
         }
 
         public double GetPop(int x, int y) //get population density for a particular area
         {
-            //the more red, the higher the population pretty much
+            //the more red, the higher the population pretty much ==> white is lack of population however so need to compare to green and blue
 
             Color getPixel = population.GetPixel(x, y);
             int red = getPixel.R;
+            int green = getPixel.G;
+            int blue = getPixel.B;
 
-            double popDensity = (double)red / (double)255;
+            double average = (double)(green + blue) / (double)2; //average of green and blue (higher = lighter colour)
+
+            double popDensity = Math.Abs((double)red - average) / (double)255;
 
             return popDensity; //return density (note population roughly density *100,000)
         }
@@ -57,12 +63,16 @@ namespace VSim
         public double getGDP(int x, int y) //Gets GDP of a particular pixel
         {
             //not useful at the moment since the data Map is a different format to the other maps
-            //More blue = more gdp
+            //darker blue = more gdp
 
             Color getPixel = GDP.GetPixel(x, y);
             int blue = getPixel.B;
+            int red = getPixel.R;
+            int green = getPixel.G;
 
-            double GDPamount = (double)blue / (double)255;
+            double average = (double)(green + red) / (double)2; //average of green and red (higher = ligher colour)
+
+            double GDPamount = Math.Abs((double)blue - average)/ (double)255;
 
             return GDPamount;
         }    

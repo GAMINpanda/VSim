@@ -55,7 +55,8 @@ namespace VSim
             InfectedPixels = new List<int[]>() { Main.Globals.Day1Infected};
             RecoveredPixels = new List<int[]>();
             DeadPixels = new List<int[]>();
-            SIRValues = new List<int[]>() { new int[] { Main.Globals.Day1Infected[0], Main.Globals.Day1Infected[1], 1, Convert.ToInt32(Data.GetPop(Main.Globals.Day1Infected[0], Main.Globals.Day1Infected[1]) * 100000),0,0} }; //only 1 infected individual
+            SIRValues = new List<int[]>() { new int[] { Main.Globals.Day1Infected[0], Main.Globals.Day1Infected[1], 1, Convert.ToInt32(Data.GetPop(Main.Globals.Day1Infected[0], Main.Globals.Day1Infected[1]) * 500000),0,0} }; //only 1 infected individual
+            Console.WriteLine("Temperature:"+Data.GetTemp(Main.Globals.Day1Infected[0], Main.Globals.Day1Infected[1])); //Test
         }
 
         public void OutputToConsole()

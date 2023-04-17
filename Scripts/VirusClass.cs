@@ -56,6 +56,13 @@ namespace VSim
                 rand = random.Next(0, 4); //4 different items could mutuate
                 randomChange = random.Next(0, 10); //some variation
 
+                Main.Globals.Cure = Main.Globals.Cure - (randomChange * 0.01); //mutation halts progress
+
+                if (Main.Globals.Cure < 0)
+                {
+                    Main.Globals.Cure = 0;
+                }
+
                 switch (rand)
                 {
                     case 0://affects lethality
