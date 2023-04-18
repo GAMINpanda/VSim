@@ -56,7 +56,7 @@ namespace VSim
                 rand = random.Next(0, 4); //4 different items could mutuate
                 randomChange = random.Next(0, 10); //some variation
 
-                Main.Globals.Cure = Main.Globals.Cure - (randomChange * 0.01); //mutation halts progress
+                Main.Globals.Cure = Main.Globals.Cure - (randomChange * 0.005); //mutation halts progress
 
                 if (Main.Globals.Cure < 0)
                 {
@@ -67,15 +67,43 @@ namespace VSim
                 {
                     case 0://affects lethality
                         Lethality = Lethality + randomChange - 5;
+                        if (Lethality < 0) //these conditions prevent the parameters becoming erroneous
+                        {
+                            Lethality = 0;
+                        }
+                        if (Lethality > 100)
+                        {
+                            Lethality = 100;
+                        }
                         break;
                     case 1: //affects rnumber
                         RNumber = RNumber + ((double)randomChange/(double)10) - 0.5;
+                        if (RNumber < 0)
+                        {
+                            RNumber = 0.1;
+                        }
                         break;
                     case 2://affects infectivity
                         Infectivity = Infectivity + randomChange - 5;
+                        if (Infectivity < 0)
+                        {
+                            Infectivity = 1;
+                        }
+                        if (Infectivity > 100)
+                        {
+                            Infectivity = 100;
+                        }
                         break;
                     case 3: //affects temperature resistance
                         TemperatureResist = TemperatureResist + ((double)randomChange / (double)20) - 0.25;
+                        if (TemperatureResist < 0)
+                        {
+                            TemperatureResist = 0.1;
+                        }
+                        if (TemperatureResist > 1)
+                        {
+                            TemperatureResist = 1;
+                        }
                         break;
                     default:
                         break;

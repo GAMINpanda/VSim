@@ -216,7 +216,7 @@ namespace VSim
 
             MainWin.Dispatcher.Invoke(() => { MainWin.chartWin.Update(TotalSusceptible, TotalInfected, TotalRecovered,TotalDead); }); //update graph
 
-            return ((double)(TotalRecovered + TotalSusceptible)/(double)(TotalInfected + TotalSusceptible + TotalRecovered + TotalDead) * 0.1); //for use in cure development
+            return ((double)(TotalRecovered + TotalSusceptible)/(double)(TotalInfected + TotalSusceptible + TotalRecovered + TotalDead) * 0.2); //for use in cure development
         }
 
         public void UpdateCure(double TotalAble) //update cure progression
