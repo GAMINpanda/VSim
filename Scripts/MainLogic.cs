@@ -17,9 +17,9 @@ namespace VSim
             Test.TestDataMilestone1();
             
             Test.TestDataMilestone3();
-            */
 
             Test.TestDataMilestone6();
+            */
 
             while (true)
             {
