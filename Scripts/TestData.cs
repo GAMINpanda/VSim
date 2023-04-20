@@ -98,5 +98,22 @@ namespace Testing
 
             cpsv.SIRValues.Add(new int[] { 0, 0, 0, 1} );
         }
+
+        public static void TestDataMilestone6()//testing mutation in milestone 6
+        {
+            cpsv.Virus.VirusName = "Covid";
+            cpsv.Virus.Lethality = 75;
+            cpsv.Virus.Infectivity = 90;
+            cpsv.Virus.RNumber = 15;
+            cpsv.Virus.TemperatureResist = 0.3;
+            cpsv.Virus.MutateChance = 100;
+
+            for (int i = 0; i < 5; i++)
+            {
+                cpsv.Virus.Mutate();
+                System.Threading.Thread.Sleep(5);
+                cpsv.Virus.OutputToConsole(); //show results
+            }
+        }
     }
 }

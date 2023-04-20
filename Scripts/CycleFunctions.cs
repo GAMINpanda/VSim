@@ -98,7 +98,7 @@ namespace VSim
             {
                 //Console.WriteLine("I:" + vals[2] + "S:" + vals[3]+ "R:" + vals[4] + "D:" + vals[5]);
 
-                if (valsInfect.Count > 1)
+                if (valsInfect.Count > 0)
                 {
                     for (int i = 0; i < valsInfect.Count; i++)
                     {

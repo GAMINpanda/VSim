@@ -19,6 +19,8 @@ namespace VSim
             Test.TestDataMilestone3();
             */
 
+            Test.TestDataMilestone6();
+
             while (true)
             {
                 int count = 0;

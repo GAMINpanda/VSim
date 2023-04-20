@@ -200,4 +200,5 @@
     <Resource Include="ImagesLowRes\TemperatureMapVeryLowRes.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions />
 </Project>
