@@ -9,9 +9,9 @@ namespace VSim
 {
     public class DataMap
     {
-        Bitmap temperature = new Bitmap(Main.Globals.FilePath + "/TemperatureMapVeryLowRes.jpg");
-        Bitmap population = new Bitmap(Main.Globals.FilePath + "/PopulationDensityVeryLowRes.jpg");
-        Bitmap GDP = new Bitmap(Main.Globals.FilePath + "/GDPperCapitaVeryLowRes.png"); //need to edit to be same format as other two maps
+        Bitmap temperature = new Bitmap("ImagesLowRes/TemperatureMapVeryLowRes.jpg");
+        Bitmap population = new Bitmap("ImagesLowRes/PopulationDensityVeryLowRes.jpg");
+        Bitmap GDP = new Bitmap("ImagesLowRes/GDPperCapitaVeryLowRes.png");
 
         public DataMap()
         {
@@ -73,6 +73,8 @@ namespace VSim
             double average = (double)(green + red) / (double)2; //average of green and red (higher = ligher colour)
 
             double GDPamount = Math.Abs((double)blue - average)/ (double)255;
+
+            //Console.WriteLine(GDPamount);
 
             return GDPamount;
         }    

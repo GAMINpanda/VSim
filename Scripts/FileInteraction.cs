@@ -99,7 +99,7 @@ namespace VSim
 
     public class FileInteraction
     {
-        public string FilePath = System.IO.Path.GetFullPath(@"..\..\Save.json");
+        public string FilePath = System.IO.Path.GetFullPath("Save.json");
 
         public CurrentPixelStatusAndVirus LoadSaveFile() //Loads from Save.json
         {

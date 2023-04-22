@@ -84,7 +84,7 @@ namespace VSim
 
             public static CurrentPixelStatusAndVirus cpsv = new CurrentPixelStatusAndVirus(new VirusClass());
 
-            public static string FilePath = System.IO.Path.GetFullPath(@"..\..\ImagesLowRes");
+            public static string FilePath = System.IO.Path.GetFullPath("../../ImagesLowRes");
         }
     }
 }

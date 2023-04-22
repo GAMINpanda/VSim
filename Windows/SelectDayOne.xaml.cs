@@ -21,7 +21,7 @@ namespace VSim
     public partial class SelectDayOne : Window
     {
         System.Windows.Point coords = new System.Windows.Point();
-        string filePath = System.IO.Path.GetFullPath(@"..\..\ImagesLowRes\SelectPixelVeryLowRes.png");
+        string filePath = System.IO.Path.GetFullPath("ImagesLowRes/SelectPixelVeryLowRes.png");
 
 
         public SelectDayOne()

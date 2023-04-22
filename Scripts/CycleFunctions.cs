@@ -9,7 +9,7 @@ namespace VSim
 {
     public class CycleFunctions
     {
-        Bitmap SelectPixBitmap = new Bitmap(System.IO.Path.GetFullPath(@"..\..\ImagesLowREs\SelectPixelVeryLowRes.png"));
+        Bitmap SelectPixBitmap = new Bitmap(System.IO.Path.GetFullPath("ImagesLowRes/SelectPixelVeryLowRes.png"));
         DataMap Data = new DataMap();
         public void CheckSusceptiblePixels()//Find which pixels could possibly be infected
         {
@@ -52,8 +52,12 @@ namespace VSim
 
                 double temp = Data.GetTemp(coord[0], coord[1]);
                 double pop = Data.GetPop(coord[0], coord[1]);
-                //double gdp = Data.getGDP(coord[0], coord[1]);
-                double gdp = 0.5; //keep as a constant as data map wrong size atm
+                double gdp = Data.getGDP(coord[0], coord[1]);
+
+                if (gdp <= 0) //make sure gdp doesn't become negative
+                {
+                    gdp = 0.1;
+                }
 
                 double RawNumber = Math.Pow((pop / gdp), temp * Main.Globals.cpsv.Virus.RNumber); //Number represents susceptibility to infection
 
